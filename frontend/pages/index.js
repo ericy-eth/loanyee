@@ -1,8 +1,20 @@
 import Link from "next/link"
-
+import Image from "next/image"
+import banner from "../public/image/banner.png"
+import BorrowerProfile from "../components/borrowerProfile"
 export default function Home() {
+  const profile = {
+ 
+    borrowerAddress:"0x53..123",
+    value:"100",
+    maturity:"30 days",
+    creditScore:"4",
+    salaryHistory:"5 months",
+    APR:"15%",
+    status:"Active"
+  }
   return (
-   <document class="bg-white">
+   <div class="bg-white">
       <header class="flex justify-between align-middle py-4 px-8 border-b-2 border-grey-200">
 
         <div class="text-xl font-bold py-2 px-5"> 
@@ -29,7 +41,22 @@ export default function Home() {
        
      
       </header>
-   
-   </document>
+
+
+<div class="container mx-auto mt-10">
+<Image class="w-12" src={banner}></Image>
+</div>
+
+      <div class="container mx-auto  mt-10 ">
+       
+
+        <BorrowerProfile data={profile}></BorrowerProfile>
+        <BorrowerProfile data={profile}></BorrowerProfile>
+        <BorrowerProfile data={profile}></BorrowerProfile>
+
+
+      </div>
+
+   </div>
   )
 }
