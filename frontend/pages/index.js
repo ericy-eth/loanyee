@@ -10,7 +10,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/useContext";
 
 export default function Home() {
-
+  const {user, setUser} = useContext(UserContext)
 
   const [isWalletConnected, setWalletConnected] = useState()
 
@@ -37,6 +37,8 @@ export default function Home() {
 
         console.log("Found an authorized account:", account);
         setWalletConnected(true)
+        setUser({account:account})
+
       } else {
         console.log("No authorized account found")
       }
@@ -55,7 +57,7 @@ export default function Home() {
 
       const accounts = await ethereum.request({method: "eth_requestAccounts"});
       const account = accounts[0]
-
+      setUser({account:account})
       setWalletConnected(true)
 
   
