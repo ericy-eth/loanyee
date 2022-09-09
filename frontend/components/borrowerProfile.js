@@ -16,7 +16,7 @@ export default function BorrowerProfile({index,data}){
 
     //This is for shortening an address for easy display
     const shortenAddress = (str) => {
-        return str.substring(0, 6) + "..." + str.substring(str.length - 4);
+        return str.substring(0, 5) + "..." + str.substring(str.length - 3);
     };
 
 
@@ -25,7 +25,7 @@ export default function BorrowerProfile({index,data}){
         <div class={borrowerProfileCSS}>
             {/* Account profile and address */}
             <div class="flex gap-5 col-span-2  items-center ">
-            <Jazzicon diameter={50} seed={jsNumberForAddress("0x28352342234234")} />
+            <Jazzicon diameter={50} seed={jsNumberForAddress(data.borrowerAddress)} />
                 {shortenAddress(data.borrowerAddress)}
             </div>
 

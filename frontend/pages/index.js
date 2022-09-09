@@ -2,10 +2,69 @@ import Link from "next/link"
 import Image from "next/image"
 import banner from "../public/image/banner.png"
 import BorrowerProfile from "../components/borrowerProfile"
+
+import { ethers } from "ethers";
+
+
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../context/useContext";
+
 export default function Home() {
+
+
+  const [isWalletConnected, setWalletConnected] = useState()
+
+  useEffect(()=>{
+    checkIfWalletConnected()
+  },[])
+  async function checkIfWalletConnected(){
+    try {
+      const { ethereum } = window;
+
+      if (!ethereum) {
+        console.log("Make sure you have metamask!");
+        return;
+      } else {
+        console.log("We have the ethereum object", ethereum);
+      }
+
+      const accounts = await ethereum.request({ method: "eth_accounts" });
+      const provider = new ethers.providers.Web3Provider(ethereum);
+
+      if (accounts.length !== 0) {
+        const account = accounts[0];
+        
+
+        console.log("Found an authorized account:", account);
+        setWalletConnected(true)
+      } else {
+        console.log("No authorized account found")
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function connectWallet(){
+      const {ethereum} = window
+
+      if(!ethereum){
+          console.log("No metamask detected");
+          return
+      }
+
+      const accounts = await ethereum.request({method: "eth_requestAccounts"});
+      const account = accounts[0]
+
+      setWalletConnected(true)
+
+  
+  }
+
+
   const profile1 = {
  
-    borrowerAddress:"0x53..123",
+    borrowerAddress:"0x53203942123",
     currency:"USDC",
     value:"25,000",
     maturity:"30 days",
@@ -17,7 +76,7 @@ export default function Home() {
 
   const profile2 = {
  
-    borrowerAddress:"0x35..432",
+    borrowerAddress:"0x35759232432",
     currency:"ETH",
     value:"1.5",
     maturity:"90 days",
@@ -28,7 +87,7 @@ export default function Home() {
   }
 
   const profile3 = {
-    borrowerAddress:"0x98..824",
+    borrowerAddress:"0x982032948824",
     currency:"USDC",
     value:"50,000",
     maturity:"30 days",
@@ -38,7 +97,29 @@ export default function Home() {
     status:"Inactive"
   }
 
-  const dataSet = [profile1, profile2, profile3,profile1, profile2, profile3,profile1, profile2, profile3,profile1, profile2, profile3,profile1, profile2, profile3,profile1, profile2, profile3,profile1, profile2, profile3]
+  const profile4 = {
+    borrowerAddress:"0x9189382013124",
+    currency:"USDC",
+    value:"120,000",
+    maturity:"30 days",
+    creditScore:"5",
+    salaryHistory:"9 months",
+    APR:"12%",
+    status:"Active"
+  }
+
+  const profile5 = {
+    borrowerAddress:"0x84628163732822",
+    currency:"ETH",
+    value:"2.25",
+    maturity:"90 days",
+    creditScore:"3",
+    salaryHistory:"1 year",
+    APR:"5%",
+    status:"Active"
+  }
+
+  const dataSet = [profile1, profile2, profile3,profile1, profile4, profile5,profile1, profile2, profile4,profile4, profile2, profile3,profile5, profile2, profile5,profile1, profile2, profile3,profile1, profile2, profile3]
   return (
    <div class="bg-white">
     {/* Header */}
@@ -57,11 +138,9 @@ export default function Home() {
             </Link>
 
           
-            <Link href="/signup">
-            <a class="text-md hover:opacity-80 m-0 bg-stone-900 text-white py-2 px-5 rounded-full">
-                Sign In with Ethereum
+            <a onClick={connectWallet} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">
+                {!isWalletConnected ? <>Sign In </> :<>Connected!</>}
               </a>
-            </Link>
         
         </div>
 
