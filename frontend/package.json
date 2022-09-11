@@ -9,8 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@metamask/jazzicon": "^2.0.0",
+    "@mui/icons-material": "^5.10.3",
+    "@mui/material": "^5.10.4",
     "@svgr/webpack": "^6.3.1",
+    "bootstrap": "5.2.1",
     "ethers": "^5.7.0",
     "jazzicon": "^1.5.0",
     "next": "12.2.5",

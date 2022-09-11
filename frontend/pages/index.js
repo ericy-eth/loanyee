@@ -127,8 +127,8 @@ export default function Home() {
     {/* Header */}
       <header class="flex justify-between align-middle py-4 px-8 border-b-2 border-grey-200">
 
-        <div class="text-4xl font-bold py-2 px-5"> 
-          🌀 Salary Based Loan
+        <div class="text-4xl font-bold py-2 px-5 text-black "> 
+          🌀 Loanyee
         </div>
 
         <div class="flex flex-row gap-3 items-center">
