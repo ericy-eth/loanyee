@@ -1,7 +1,9 @@
 import Image from "next/image"
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon' //Randomly generated profiles
-import USDC from "./usdc.js" //USDC svg component
-import ETH from "./eth.js" //ETH svg component
+import USDC from "./cryptologos/usdc.js" //USDC svg component
+import ETH from "./cryptologos/eth.js" //ETH svg component
+import DAI from "./cryptologos/dai.js"
+import USDT from "./cryptologos/usdt.js" //Currently not wokring (hydration error)
 
 export default function BorrowerProfile({index,data}){
 
@@ -32,9 +34,9 @@ export default function BorrowerProfile({index,data}){
             {/* Currency and Amount */}
             <div class="flex gap-2 col-span-2 items-center">
                 {data.currency=="USDC" && 
-                <USDC></USDC>}
+                <USDC width="2rem"></USDC>}
                 {data.currency=="ETH" &&
-                <ETH></ETH>}
+                <ETH width="2rem"></ETH>}
             
                 
                 {data.value} {data.currency}

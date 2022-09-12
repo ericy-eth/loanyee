@@ -5,20 +5,55 @@ import { ethers } from "ethers";
 
 import AccountHistory from "../components/borrowSignup/accountHistory";
 import SetupLoan from "../components/borrowSignup/setupLoan";
-
+import Completed from "../components/borrowSignup/completed";
 
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/useContext";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { list } from "postcss";
 
 
 
 export default function Borrow(){
 
+
+    const [currentItem, setCurrentItem] = useState(0)
+
     const {user, setUser} = useContext(UserContext)
 
     const [isWalletConnected, setWalletConnected] = useState()
+
+
+    // Form Data
+    
+    const [currency, setCurrency] = useState("USDC")
+
+    const [borrowAmount, setBorrowAmount] = useState(0)
+
+    const [loanDuration, setLoanDuration] = useState(0)
+
+    const [loanDurationType, setLoanDurationType] = useState("Month")
+
+    const setFunctions = {
+        setCurrency: setCurrency,
+        setBorrowAmount: setBorrowAmount,
+        setLoanDuration: setLoanDuration,
+        setLoanDurationType: setLoanDurationType
+    }
+
+    const formState = {
+        currency: currency,
+        borrowAmount: borrowAmount,
+        loanDuration: loanDuration,
+        loanDurationType: loanDurationType
+    }
+
+    const APY = 0.10
+
+    //List items
+    const listItems = [<AccountHistory/>, <SetupLoan setFunctions={setFunctions} formState={formState} APY={APY} creditScore={3}/>, <Completed formState={formState} APY={APY}/>]
+
   
     useEffect(()=>{
       checkIfWalletConnected()
@@ -71,6 +106,19 @@ export default function Borrow(){
     
     }
 
+    function nextPage(){
+       
+        setCurrentItem((currentItem)=>currentItem+1)
+    }
+
+    function prevPage(){
+        setCurrentItem((currentItem)=>currentItem-1)
+
+    }
+    
+    function submitForm(){
+
+    }
     return(
         <>
         <header class="flex justify-between align-middle py-4 px-8 border-b-2 border-grey-200">
@@ -83,11 +131,11 @@ export default function Borrow(){
 
 <div class="flex flex-row gap-3 items-center">
 
-    <Link href="/borrow">
-      <a class="text-md hover:opacity-60 m-0 border-black border-2 text-black bg-white py-1.5 px-5 rounded-full">
+    
+      <a class="text-md m-0 border-black border-2 text-black bg-white py-1.5 px-5 rounded-full">
         Become a Borrower
       </a>
-    </Link>
+  
 
   
     <a onClick={connectWallet} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">
@@ -112,7 +160,8 @@ export default function Borrow(){
                     Prove Account History
                 </div>
                 <ArrowForwardIosIcon/>
-                <div class="flex flex-row items-center gap-3">
+                {/* "flex flex-row opacity-50 items-center gap-3" */}
+                <div class={currentItem==0 ? "flex flex-row opacity-50 items-center gap-3" :"flex flex-row items-center gap-3" }>
                     <div class="bg-black rounded-full w-10 h-10 flex align-middle items-center justify-center"> 
                         <p class="text-white">
                             2
@@ -122,7 +171,7 @@ export default function Borrow(){
                 </div>
                 <ArrowForwardIosIcon/>
 
-                <div class="flex flex-row items-center gap-3">
+                <div class={currentItem<2 ? "flex flex-row opacity-50 items-center gap-3" : "flex flex-row items-center gap-3" }>
                     <div class="bg-black rounded-full w-10 h-10 flex align-middle items-center justify-center"> 
                         <p class="text-white">
                             3
@@ -131,8 +180,24 @@ export default function Borrow(){
                     Completed
                 </div>
             </header>
-           
-           <SetupLoan/>
+           {listItems[currentItem]}
+
+           {/* Render Buttons to go back or forward */}
+            <div class="flex justify-around mt-5">
+            {currentItem>0 &&
+                    <button onClick={prevPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Back</button>
+
+                }
+
+                {currentItem==2 ?
+                    <button onClick={submitForm} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>
+                            :
+                    <button onClick={nextPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>
+
+                        }
+                
+
+            </div>
         </div>
         </>
     )

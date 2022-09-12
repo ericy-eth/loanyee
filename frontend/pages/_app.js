@@ -4,13 +4,20 @@ import {UserProvider} from "../context/useContext"
 import Head from "next/head";
 import Script from "next/script"
 
-
+// add bootstrap css 
 
 function MyApp({ Component, pageProps }) {
   return(
-    <UserProvider>
+  <>
+    <Head>
+        <title>Loanyee</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <UserProvider>
         <Component {...pageProps} />
     </UserProvider>
+  </>
+
   )
 }
 
