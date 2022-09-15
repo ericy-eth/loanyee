@@ -1,14 +1,11 @@
 import Image from "next/image"
-import Link from "next/link.js"
-
-
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon' //Randomly generated profiles
 import USDC from "./cryptologos/usdc.js" //USDC svg component
 import ETH from "./cryptologos/eth.js" //ETH svg component
 import DAI from "./cryptologos/dai.js"
 import USDT from "./cryptologos/usdt.js" //Currently not wokring (hydration error)
 
-export default function BorrowerProfile({index,data}){
+export default function BorrowerSection({index,data}){
 
     // If this is the first profile in the list, do not render the border at the top
     let borrowerProfileCSS;
@@ -26,7 +23,8 @@ export default function BorrowerProfile({index,data}){
 
 
     return(
-         <div class={borrowerProfileCSS}>
+        
+        <div class={borrowerProfileCSS}>
             {/* Account profile and address */}
             <div class="flex gap-5 col-span-2  items-center ">
             <Jazzicon diameter={50} seed={jsNumberForAddress(data.borrowerAddress)} />
@@ -57,9 +55,6 @@ export default function BorrowerProfile({index,data}){
                 {data.status}
             </div>
         </div>
-
-        
-       
         
     )
 }
