@@ -123,7 +123,7 @@ export default function BorrowerDetail() {
                         <USDC width={"1.5rem"}></USDC> <p class="text-2xl font-medium">10,000</p>
                         </div>
                     </div>
-                    <div class="flex flex-col">
+                    <div class="flex flex-col ">
                         <p class="text-md text-gray-500">APY</p>
                         <p class="text-2xl font-medium">20%</p>
 
@@ -177,7 +177,7 @@ export default function BorrowerDetail() {
             {/* Loan History */}
             <div>
             <h1 class="font-medium text-xl">Loan History</h1>
-            <div class="container mx-auto py-5 grid grid-cols-13 justify-between text-lg text-gray-500 items-center">
+            <div class="container py-5 grid grid-cols-13 justify-between text-xl text-stone-500 items-center">
                 <div class="col-span-3">Lender</div>
                 <div class="col-span-2">Value</div>
                 <div class="col-span-2">Maturity</div>
