@@ -426,4 +426,3 @@ contract EmploymentLoan is SuperAppBase {
         return _updateOutflow(ctx);
     }
 }
-
