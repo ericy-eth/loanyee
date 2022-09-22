@@ -45,9 +45,9 @@ export default function SetupLoan({setFunctions, formState, APY, creditScore}){
         <div class="max-h-100">
 
 
-            <h1 class="flex  mt-8 font-bold  justify-center text-2xl">
+            <h1 class="flex  mt-8 font-bold text-2xl">
             Setup Loan
-        </h1>
+            </h1>
         <div class="bt-5 flex flex-col gap-5 mt-5">
             <div class="flex flex-col gap-2">
                 <h2 class="text-lg font-semibold">
@@ -110,6 +110,19 @@ export default function SetupLoan({setFunctions, formState, APY, creditScore}){
                         </div>
                         </div>}
                         </div>
+                </div>
+                
+
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <h2 class="text-lg font-semibold">
+                    Employer Address
+                </h2>
+                <div class="grid grid-cols-5 border-2 px-5 rounded-md text-lg w-full p-3 border-gray-200">
+                    <input style={{outline:"none"}} placeholder="0x..." value={formState.employerAddress} onChange={(event)=>setFunctions.setEmployerAddress(event.target.value)} class="col-span-4">
+                    </input>
+                  
                 </div>
                 
 

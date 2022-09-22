@@ -3,7 +3,7 @@ const ethers = require("ethers")
 const { Framework } = require("@superfluid-finance/sdk-core")
 require("dotenv").config()
 
-const loanAddress = "" //NOTE: must change to reflect actual loan address
+const loanAddress = "0x274149aBc1c8Cc942EFd710e6D8142101efFE608" //NOTE: must change to reflect actual loan address
 
 //NOTE - this should be run first to ensure that the contract has a small token balance
 

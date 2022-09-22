@@ -10,16 +10,31 @@ import { UserContext } from "../context/useContext";
 
 import dataSet from "../data/borrowerList"
 
+import { connect } from "@tableland/sdk";
+
+
 let ensName;
+
+
 
 export default function Home() {
   const { user, setUser } = useContext(UserContext);
 
   const [isWalletConnected, setWalletConnected] = useState();
 
+  const [data, setData] = useState();
+
   useEffect(() => {
     checkIfWalletConnected();
+    fetchLoans();
   }, []);
+
+  async function fetchLoans(){
+    let loanList = await fetch("https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20loan_5_769")
+    const data = await loanList.json()
+    setData(data);
+  }
+
   async function checkIfWalletConnected() {
     try {
       const { ethereum } = window;
@@ -61,7 +76,7 @@ export default function Home() {
 
     const accounts = await ethereum.request({ method: "eth_requestAccounts" });
     const account = accounts[0];
-    setUser({ account: account });
+    setUser({ account: account});
     setWalletConnected(true);
   }
  

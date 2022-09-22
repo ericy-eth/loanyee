@@ -14,13 +14,18 @@ export default function Completed({formState, APY}){
             
     
         
-        <div class="flex  mb-5">
-                <div class="flex flex-col gap-5   mt-8 font-bold align-center  justify-center text-2xl max-w-md">
+        <div class="flex  mb-5 ">
+                <div class="flex flex-col gap-5   mt-8 font-bold align-center  justify-center text-2xl">
         <div class="flex justify-center">
             Completed!
         </div>
+
+        <div class="flex flex-col gap-1 max-w-2 font-medium">
+            <h1 class="text-base">Employer Address</h1>
+            <p>{formState.employerAddress}</p>
+        </div>
       
-        <div class="flex flex-col gap-1 max-w-2 font-semibold">
+        <div class="flex flex-col gap-1 font-semibold">
             <h1 class="text-base">Borrow Amount</h1>
             <p class="flex gap-2">
                 {formState.borrowAmount} {formState.currency} {formState.currency=="USDC" && <USDC width="25px"></USDC>} {formState.currency=="USDT" && <USDT width="25px"></USDT>} {formState.currency=="DAI" && <DAI width="25px"></DAI>}</p>

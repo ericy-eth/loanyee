@@ -3,7 +3,9 @@ import Link from "next/link"
 
 import { ethers } from "ethers";
 
-import AccountHistory from "../components/borrowSignup/accountHistory";
+import abi from "../data/contractABI/LoanFactory.json"
+
+import EmployerApproval from "../components/borrowSignup/employerApproval";
 import SetupLoan from "../components/borrowSignup/setupLoan";
 import Completed from "../components/borrowSignup/completed";
 
@@ -12,6 +14,163 @@ import { UserContext } from "../context/useContext";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { list } from "postcss";
+
+const loanABI = [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "registry",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "int256",
+          "name": "borrowAmount",
+          "type": "int256"
+        },
+        {
+          "indexed": false,
+          "internalType": "int8",
+          "name": "interestRate",
+          "type": "int8"
+        },
+        {
+          "indexed": false,
+          "internalType": "int8",
+          "name": "paybackMonths",
+          "type": "int8"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "employer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "borrower",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "contract ISuperToken",
+          "name": "borrowToken",
+          "type": "address"
+        }
+      ],
+      "name": "loanCreated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "int256",
+          "name": "_borrowAmount",
+          "type": "int256"
+        },
+        {
+          "internalType": "int8",
+          "name": "_interestRate",
+          "type": "int8"
+        },
+        {
+          "internalType": "int8",
+          "name": "_paybackMonths",
+          "type": "int8"
+        },
+        {
+          "internalType": "address",
+          "name": "_employer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_borrower",
+          "type": "address"
+        },
+        {
+          "internalType": "contract ISuperToken",
+          "name": "_borrowToken",
+          "type": "address"
+        },
+        {
+          "internalType": "contract ISuperfluid",
+          "name": "_host",
+          "type": "address"
+        }
+      ],
+      "name": "createNewLoan",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "employmentLoanOwners",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "idToLoan",
+      "outputs": [
+        {
+          "internalType": "contract EmploymentLoan",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "loanId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
 
 
 
@@ -29,30 +188,36 @@ export default function Borrow(){
     
     const [currency, setCurrency] = useState("USDC")
 
-    const [borrowAmount, setBorrowAmount] = useState(0)
+    const [borrowAmount, setBorrowAmount] = useState()
 
-    const [loanDuration, setLoanDuration] = useState(0)
+    const [loanDuration, setLoanDuration] = useState()
 
     const [loanDurationType, setLoanDurationType] = useState("Month")
+
+    const [employerAddress, setEmployerAddress] = useState();
+
+    const [formIsEmpty, setFormIsEmpty] = useState(false);
 
     const setFunctions = {
         setCurrency: setCurrency,
         setBorrowAmount: setBorrowAmount,
         setLoanDuration: setLoanDuration,
-        setLoanDurationType: setLoanDurationType
+        setLoanDurationType: setLoanDurationType,
+        setEmployerAddress: setEmployerAddress
     }
 
     const formState = {
         currency: currency,
         borrowAmount: borrowAmount,
         loanDuration: loanDuration,
-        loanDurationType: loanDurationType
+        loanDurationType: loanDurationType,
+        employerAddress: employerAddress
     }
 
     const APY = 0.10
 
     //List items
-    const listItems = [<AccountHistory/>, <SetupLoan setFunctions={setFunctions} formState={formState} APY={APY} creditScore={3}/>, <Completed formState={formState} APY={APY}/>]
+    const listItems = [<SetupLoan setFunctions={setFunctions} formState={formState} APY={APY} creditScore={3}/>,<EmployerApproval/>, <Completed formState={formState} APY={APY}/>]
 
   
     useEffect(()=>{
@@ -107,6 +272,17 @@ export default function Borrow(){
     }
 
     function nextPage(){
+        if(currentItem==0){
+            if(borrowAmount<=0 || loanDuration <=0 || borrowAmount==null || loanDuration ==null){
+                setFormIsEmpty(true);
+                return;
+            }
+            else{
+                setFormIsEmpty(false);
+            }
+
+
+        }
        
         setCurrentItem((currentItem)=>currentItem+1)
     }
@@ -116,7 +292,13 @@ export default function Borrow(){
 
     }
     
-    function submitForm(){
+    async function submitForm(){
+        const { ethereum } = window;
+
+        const provider = new ethers.providers.Web3Provider(ethereum);        
+        const signer = provider.getSigner(user.account)
+        const LoanFactoryContract = new ethers.Contract("0x07d1edf3cA7A35312F53BFC2570Fdd8A3F3CE597", loanABI, signer)
+        const loanId = await LoanFactoryContract.createNewLoan(ethers.utils.parseEther(borrowAmount), 10, loanDuration, employerAddress, user.account, "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9")
 
     }
     return(
@@ -157,7 +339,7 @@ export default function Borrow(){
                             1
                         </p>
                     </div>
-                    Prove Account History
+                    Setup Loan
                 </div>
                 <ArrowForwardIosIcon/>
                 {/* "flex flex-row opacity-50 items-center gap-3" */}
@@ -167,7 +349,7 @@ export default function Borrow(){
                             2
                         </p>
                     </div>
-                    Setup Loan
+                    Employer Approval
                 </div>
                 <ArrowForwardIosIcon/>
 
@@ -184,20 +366,22 @@ export default function Borrow(){
 
            {/* Render Buttons to go back or forward */}
             <div class="flex justify-around mt-5">
+            
             {currentItem>0 &&
                     <button onClick={prevPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Back</button>
 
                 }
 
-                {currentItem==2 ?
-                    <button onClick={submitForm} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>
-                            :
-                    <button onClick={nextPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>
+            {currentItem==2 ?
+                <button onClick={submitForm} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>
+                        :
+                <button onClick={nextPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>
 
-                        }
+            }
                 
 
             </div>
+            {formIsEmpty &&  <div class="justify-center mt-5">Loan amount or loan duration cannot be 0</div>}
         </div>
         </>
     )
