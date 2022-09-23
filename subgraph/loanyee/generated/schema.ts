@@ -104,4 +104,13 @@ export class loanHistory extends Entity {
   set borrowToken(value: Bytes) {
     this.set("borrowToken", Value.fromBytes(value));
   }
+
+  get loanId(): BigInt {
+    let value = this.get("loanId");
+    return value!.toBigInt();
+  }
+
+  set loanId(value: BigInt) {
+    this.set("loanId", Value.fromBigInt(value));
+  }
 }

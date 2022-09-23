@@ -11,7 +11,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract LoanFactory {      
     // Events     
-    event loanCreated(int256 borrowAmount, int8 interestRate, int8 paybackMonths, address employer, address borrower, ISuperToken borrowToken);    
+    event loanCreated(uint256 loanId, int256 borrowAmount, int8 interestRate, int8 paybackMonths, address employer, address borrower, ISuperToken borrowToken);    
     
     /// @notice counter which is iterated +1 for each new loan created.     
     /// @dev Note that the value begins at 0 here, but the first one will start at one.    
@@ -66,7 +66,7 @@ contract LoanFactory {
             " VALUES (",Strings.toString(loanId),")"));  
 
         //Emit the event for the subgraph     
-        emit loanCreated(_borrowAmount, _interestRate, _paybackMonths, _employer, _borrower, _borrowToken);        
+        emit loanCreated(loanId, _borrowAmount, _interestRate, _paybackMonths, _employer, _borrower, _borrowToken);        
         idToLoan[loanId] = newLoan;        
         employmentLoanOwners[msg.sender] = loanId; 
         return loanId;     

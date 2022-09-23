@@ -7,4 +7,6 @@ type loanHistory @entity {
   employer: Bytes!
   borrower: Bytes!
   borrowToken: Bytes!
+  loanId: BigInt!
+
 }

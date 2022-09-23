@@ -18,14 +18,17 @@ export function handleloanCreated(event: loanCreated): void {
 
   // BigInt and BigDecimal math are supported
   entity.count = entity.count.plus(BigInt.fromI32(1))
-  
+
   // Entity fields can be set based on event parameters
+  
   entity.borrowAmount = event.params.borrowAmount
   entity.interestRate = event.params.interestRate
-  entity.paybackMonths = event.params.paybackMonths
-  entity.employer = event.params.employer
+  entity.borrowAmount = event.params.borrowAmount
   entity.borrower = event.params.borrower
+  entity.employer = event.params.employer
   entity.borrowToken = event.params.borrowToken
+  entity.loanId = event.params.loanId
+  
 
   // Entities can be written to the store with `.save()`
   entity.save()

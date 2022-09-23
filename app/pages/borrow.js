@@ -15,162 +15,168 @@ import { UserContext } from "../context/useContext";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { list } from "postcss";
 
-const loanABI = [
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "registry",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "int256",
-          "name": "borrowAmount",
-          "type": "int256"
-        },
-        {
-          "indexed": false,
-          "internalType": "int8",
-          "name": "interestRate",
-          "type": "int8"
-        },
-        {
-          "indexed": false,
-          "internalType": "int8",
-          "name": "paybackMonths",
-          "type": "int8"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "employer",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "borrower",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "contract ISuperToken",
-          "name": "borrowToken",
-          "type": "address"
-        }
-      ],
-      "name": "loanCreated",
-      "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "int256",
-          "name": "_borrowAmount",
-          "type": "int256"
-        },
-        {
-          "internalType": "int8",
-          "name": "_interestRate",
-          "type": "int8"
-        },
-        {
-          "internalType": "int8",
-          "name": "_paybackMonths",
-          "type": "int8"
-        },
-        {
-          "internalType": "address",
-          "name": "_employer",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "_borrower",
-          "type": "address"
-        },
-        {
-          "internalType": "contract ISuperToken",
-          "name": "_borrowToken",
-          "type": "address"
-        },
-        {
-          "internalType": "contract ISuperfluid",
-          "name": "_host",
-          "type": "address"
-        }
-      ],
-      "name": "createNewLoan",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "name": "employmentLoanOwners",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "idToLoan",
-      "outputs": [
-        {
-          "internalType": "contract EmploymentLoan",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "loanId",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    }
-  ]
+const loanABI=  [
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "registry",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "loanId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "int256",
+        "name": "borrowAmount",
+        "type": "int256"
+      },
+      {
+        "indexed": false,
+        "internalType": "int8",
+        "name": "interestRate",
+        "type": "int8"
+      },
+      {
+        "indexed": false,
+        "internalType": "int8",
+        "name": "paybackMonths",
+        "type": "int8"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "employer",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "borrower",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "contract ISuperToken",
+        "name": "borrowToken",
+        "type": "address"
+      }
+    ],
+    "name": "loanCreated",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "int256",
+        "name": "_borrowAmount",
+        "type": "int256"
+      },
+      {
+        "internalType": "int8",
+        "name": "_interestRate",
+        "type": "int8"
+      },
+      {
+        "internalType": "int8",
+        "name": "_paybackMonths",
+        "type": "int8"
+      },
+      {
+        "internalType": "address",
+        "name": "_employer",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_borrower",
+        "type": "address"
+      },
+      {
+        "internalType": "contract ISuperToken",
+        "name": "_borrowToken",
+        "type": "address"
+      },
+      {
+        "internalType": "contract ISuperfluid",
+        "name": "_host",
+        "type": "address"
+      }
+    ],
+    "name": "createNewLoan",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "employmentLoanOwners",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "idToLoan",
+    "outputs": [
+      {
+        "internalType": "contract EmploymentLoan",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "loanId",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
 
 
 
@@ -297,7 +303,7 @@ export default function Borrow(){
 
         const provider = new ethers.providers.Web3Provider(ethereum);        
         const signer = provider.getSigner(user.account)
-        const LoanFactoryContract = new ethers.Contract("0x07d1edf3cA7A35312F53BFC2570Fdd8A3F3CE597", loanABI, signer)
+        const LoanFactoryContract = new ethers.Contract("0x60Fbd177b7B4311ab36134C106A88f337e981Ca9", loanABI, signer)
         const loanId = await LoanFactoryContract.createNewLoan(ethers.utils.parseEther(borrowAmount), 10, loanDuration, employerAddress, user.account, "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9")
 
     }

@@ -23,28 +23,32 @@ export class loanCreated__Params {
     this._event = event;
   }
 
-  get borrowAmount(): BigInt {
+  get loanId(): BigInt {
     return this._event.parameters[0].value.toBigInt();
   }
 
-  get interestRate(): i32 {
-    return this._event.parameters[1].value.toI32();
+  get borrowAmount(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
   }
 
-  get paybackMonths(): i32 {
+  get interestRate(): i32 {
     return this._event.parameters[2].value.toI32();
   }
 
-  get employer(): Address {
-    return this._event.parameters[3].value.toAddress();
+  get paybackMonths(): i32 {
+    return this._event.parameters[3].value.toI32();
   }
 
-  get borrower(): Address {
+  get employer(): Address {
     return this._event.parameters[4].value.toAddress();
   }
 
-  get borrowToken(): Address {
+  get borrower(): Address {
     return this._event.parameters[5].value.toAddress();
+  }
+
+  get borrowToken(): Address {
+    return this._event.parameters[6].value.toAddress();
   }
 }
 

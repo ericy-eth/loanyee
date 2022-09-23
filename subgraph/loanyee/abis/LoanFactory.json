@@ -1,7 +1,11 @@
 [
   {
     "inputs": [
-      { "internalType": "address", "name": "registry", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "registry",
+        "type": "address"
+      }
     ],
     "stateMutability": "nonpayable",
     "type": "constructor"
@@ -9,6 +13,12 @@
   {
     "anonymous": false,
     "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "loanId",
+        "type": "uint256"
+      },
       {
         "indexed": false,
         "internalType": "int256",
@@ -51,11 +61,31 @@
   },
   {
     "inputs": [
-      { "internalType": "int256", "name": "_borrowAmount", "type": "int256" },
-      { "internalType": "int8", "name": "_interestRate", "type": "int8" },
-      { "internalType": "int8", "name": "_paybackMonths", "type": "int8" },
-      { "internalType": "address", "name": "_employer", "type": "address" },
-      { "internalType": "address", "name": "_borrower", "type": "address" },
+      {
+        "internalType": "int256",
+        "name": "_borrowAmount",
+        "type": "int256"
+      },
+      {
+        "internalType": "int8",
+        "name": "_interestRate",
+        "type": "int8"
+      },
+      {
+        "internalType": "int8",
+        "name": "_paybackMonths",
+        "type": "int8"
+      },
+      {
+        "internalType": "address",
+        "name": "_employer",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_borrower",
+        "type": "address"
+      },
       {
         "internalType": "contract ISuperToken",
         "name": "_borrowToken",
@@ -68,19 +98,43 @@
       }
     ],
     "name": "createNewLoan",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
     "name": "employmentLoanOwners",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "name": "idToLoan",
     "outputs": [
       {
@@ -95,7 +149,13 @@
   {
     "inputs": [],
     "name": "loanId",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   }

@@ -15,6 +15,12 @@
     "inputs": [
       {
         "indexed": false,
+        "internalType": "uint256",
+        "name": "loanId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
         "internalType": "int256",
         "name": "borrowAmount",
         "type": "int256"
