@@ -23,11 +23,11 @@ export function handleloanCreated(event: loanCreated): void {
   
   entity.borrowAmount = event.params.borrowAmount
   entity.interestRate = event.params.interestRate
-  entity.borrowAmount = event.params.borrowAmount
   entity.borrower = event.params.borrower
   entity.employer = event.params.employer
   entity.borrowToken = event.params.borrowToken
   entity.loanId = event.params.loanId
+  entity.paybackMonths = event.params.paybackMonths
   
 
   // Entities can be written to the store with `.save()`
