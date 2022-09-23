@@ -10,7 +10,6 @@ import { UserContext } from "../context/useContext";
 
 import dataSet from "../data/borrowerList"
 
-import { connect } from "@tableland/sdk";
 
 
 let ensName;
