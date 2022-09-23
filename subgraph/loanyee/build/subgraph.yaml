@@ -1,0 +1,24 @@
+specVersion: 0.0.4
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: LoanFactory
+    network: goerli
+    source:
+      address: "0x07d1edf3cA7A35312F53BFC2570Fdd8A3F3CE597"
+      abi: LoanFactory
+      startBlock: 7636823
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - loanCreated
+      abis:
+        - name: LoanFactory
+          file: LoanFactory/abis/LoanFactory.json
+      eventHandlers:
+        - event: loanCreated(int256,int8,int8,address,address,address)
+          handler: handleloanCreated
+      file: LoanFactory/LoanFactory.wasm

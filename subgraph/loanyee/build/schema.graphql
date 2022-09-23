@@ -1,0 +1,10 @@
+type loanHistory @entity {
+  id: ID!
+  count: BigInt!
+  borrowAmount: BigInt! # int256
+  interestRate: Int! # int8
+  paybackMonths: Int!
+  employer: Bytes!
+  borrower: Bytes!
+  borrowToken: Bytes!
+}
