@@ -38,11 +38,11 @@ export default function Home() {
 
     const getLoanHistory = async()=>{
         const loanHistory = await axios.post(
-            'https://api.studio.thegraph.com/query/35243/loanyee/0.1.17',
+            'https://api.studio.thegraph.com/query/35243/loanyee/0.2.8',
             {
                 query:`
                 {
-                    loanHistories(first: 5) {
+                    loanHistories(first: 20) {
                       id
                       interestRate
                       borrowAmount
@@ -61,6 +61,7 @@ export default function Home() {
     let loanList = await fetch("https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20loan_5_775")
     const data = await loanList.json()
     const loanDataTemp = await getLoanHistory()
+    console.log(loanDataTemp);
     console.log("Loan data from the graph returns ", loanDataTemp.data.data.loanHistories);
     setLoanData(loanDataTemp.data.data.loanHistories)
     
