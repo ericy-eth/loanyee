@@ -2,7 +2,9 @@
 
 
 # Loanyee
-## Uncollateralized lending against your on-chain salary 
+>**Uncollateralized lending against your on-chain salary**
+
+## Problem
 
 DeFi enables the finance without middleman and it is already a big financial market with $70 billion TVL. But, the current DeFi focuses on asset portfolios, where people can manage and increase their assets, not so much real use cases yet.
 
@@ -11,6 +13,8 @@ But right now, if they receive salary with crypto, they have a challenge to borr
 ・Major lending protocols are still overcollateralized with the need of 125% collateral
 ・Existing undercollateralized lending protocols are mainly for institutions
 ・They don’t like or don’t have a credit on TradFi
+
+## Solution
 
 That’s where **Loanyee** comes in!
 
