@@ -17,6 +17,7 @@
     "@spruceid/siwe-parser": "^2.0.0",
     "@svgr/webpack": "^6.3.1",
     "@tableland/sdk": "^3.1.2",
+    "axios": "^0.27.2",
     "bootstrap": "5.2.1",
     "ethers": "^5.7.0",
     "jazzicon": "^1.5.0",
