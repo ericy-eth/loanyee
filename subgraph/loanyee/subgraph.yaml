@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0x60Fbd177b7B4311ab36134C106A88f337e981Ca9"
       abi: LoanFactory
-      startBlock: 7644258
+      startBlock: 7644255
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

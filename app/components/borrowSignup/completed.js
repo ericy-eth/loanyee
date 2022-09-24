@@ -43,7 +43,7 @@ export default function Completed({formState, APY}){
 
         <div class="flex flex-col gap-1 max-w-2 font-medium">
             <h1 class="text-base">Return Cost</h1>
-            <p> {formState.borrowAmount}  {formState.currency} + {parseInt(formState.borrowAmount)*APY*1000}  {formState.currency}</p>
+            <p> {formState.borrowAmount}  {formState.currency} + {parseInt(formState.borrowAmount)*((parseInt(formState.loanDuration)/12)*parseInt(formState.APY))}  {formState.currency}</p>
         </div>
         
     </div>
