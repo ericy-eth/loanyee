@@ -5,13 +5,27 @@ import Link from 'next/link';
 
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/useContext";
+import { useRouter } from 'next/router'
+
 
 import dataSet from '../data/loanHistoryList.js';
 import LoanHistorySection from '../components/loanDetail/loanHistorySection';
 
 import USDC from '../components/cryptologos/usdc';
+import DAI from '../components/cryptologos/dai';
 
 export default function BorrowerDetail() {
+
+
+  //Router for passing data between pages
+  const router = useRouter();
+const borrowerData = router.query;
+console.log("borrow data is ", borrowerData);
+
+  //Link for etherscan
+  const etherscanAddress = "https://etherscan.io/address/" + borrowerData.borrower
+  
+
     const { user, setUser } = useContext(UserContext);
 
   const [isWalletConnected, setWalletConnected] = useState();
@@ -100,12 +114,12 @@ export default function BorrowerDetail() {
 
             {/* Account Detail */}
             <div class="flex items-center gap-5">
-                <Jazzicon diameter={65} seed={jsNumberForAddress("0xCD458d7F11023556cC9058F729831a038Cb8Df9c")} />
+                <Jazzicon diameter={65} seed={jsNumberForAddress(String(borrowerData.borrower))} />
                 <div class="flex flex-col">
                     <div class="flex gap-2 items-center">
 
-                        <p class="text-xl font-medium">0xCD458d7F11...31a038Cb8Df9c </p>
-                        <a target="_blank" href='https://etherscan.io/address/0xCD458d7F11023556cC9058F729831a038Cb8Df9c'>
+                        <p class="text-xl font-medium">{borrowerData.borrower} </p>
+                        <a target="_blank" href={etherscanAddress}>
                             <Redirect width="1.5rem"/>
                         </a>
 
@@ -115,33 +129,34 @@ export default function BorrowerDetail() {
 
             {/* Loan Detail */}
             
-            <div class="flex flex-col border-2 divide-y divide-solid divide-gray-200 px-5 py-3 w-5/12 border-grey-200 rounded-md">
-                <div class="flex gap-10 pb-2">
+            <div class="flex flex-col border-2 divide-y divide-solid divide-gray-200 px-5 py-3 w-4/12 border-grey-200 rounded-md">
+                <div class="flex justify-between pb-2">
                     <div class="flex flex-col">
                         <p class="text-md text-gray-500">Loan Value</p>
                         <div class="flex gap-2" >
-                        <USDC width={"1.5rem"}></USDC> <p class="text-2xl font-medium">10,000</p>
+                        <DAI width={"2rem"}></DAI> <p class="text-2xl font-medium">{borrowerData.borrowAmount%18}</p>
                         </div>
                     </div>
+                    <div class="flex flex-col">
+                        <p class="text-sm text-gray-500">Loan Duration</p>
+                        <p class="text-xl font-medium">{borrowerData.paybackMonths} Months</p>
+                    </div>
                     <div class="flex flex-col ">
-                        <p class="text-md text-gray-500">APY</p>
-                        <p class="text-2xl font-medium">20%</p>
+                        <p class="text-md text-gray-500 mr-5">APY</p>
+                        <p class="text-2xl font-medium">{borrowerData.interestRate}%</p>
 
                     </div>
                 </div>
                
 
-                <div class="flex justify-between pt-2 pr-6">
+                <div class="flex gap-36 pt-2 pr-6">
                     <div class="flex flex-col">
                         <p class="text-sm text-gray-500">Return Amount</p>
                         <div class="flex gap-2" >
-                        <USDC width={"1.5rem"}></USDC> <p class="text-xl font-medium">12,000</p>
+                        <DAI width={"2rem"}></DAI> <p class="text-xl font-medium">{(borrowerData.borrowAmount*(borrowerData.interestRate/borrowerData.paybackMonths))%18}</p>
                         </div>
                     </div>
-                    <div class="flex flex-col">
-                        <p class="text-sm text-gray-500">Loan Duration</p>
-                        <p class="text-xl font-medium">90 Days</p>
-                    </div>
+             
                     <div class="flex flex-col">
                         <p class="text-sm text-gray-500">Contract Address</p>
                         <div class="flex gap-2 items-center">
@@ -177,7 +192,9 @@ export default function BorrowerDetail() {
             {/* Loan History */}
             <div>
             <h1 class="font-medium text-xl">Loan History</h1>
-            <div class="container py-5 grid grid-cols-13 justify-between text-xl text-stone-500 items-center">
+            {/* py-5 pt-0 grid grid-cols-13 grid-flow-row justify-between text-xl items-center hover:opacity-70 hover:cursor-pointer */}
+            {/* container py-5 grid grid-cols-13 justify-between text-xl text-stone-500 items-center border-2 border-black */}
+            <div class="py-5 pt-2 text-stone-500 grid grid-cols-13 grid-flow-row justify-between text-xl items-center">
                 <div class="col-span-3">Lender</div>
                 <div class="col-span-2">Value</div>
                 <div class="col-span-2">Maturity</div>

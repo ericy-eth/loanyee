@@ -10,9 +10,9 @@ export default function BorrowerSection({index,data}){
     // If this is the first profile in the list, do not render the border at the top
     let borrowerProfileCSS;
     if(index==0){
-        borrowerProfileCSS = "py-5 pt-0 grid grid-cols-13 grid-flow-row justify-between text-xl items-center hover:opacity-70 hover:cursor-pointer"
+        borrowerProfileCSS = "py-5 pt-0 grid grid-cols-9 grid-flow-row justify-between text-xl items-center hover:opacity-70 hover:cursor-pointer"
     }else{
-        borrowerProfileCSS = "py-5 border-t-2 grid grid-cols-13 grid-flow-row justify-between text-xl items-center hover:opacity-70 hover:cursor-pointer"
+        borrowerProfileCSS = "py-5 border-t-2 grid grid-cols-9 grid-flow-row justify-between text-xl items-center hover:opacity-70 hover:cursor-pointer"
 
     }
 
@@ -27,8 +27,8 @@ export default function BorrowerSection({index,data}){
         <div class={borrowerProfileCSS}>
             {/* Account profile and address */}
             <div class="flex gap-5 col-span-2  items-center ">
-            <Jazzicon diameter={50} seed={jsNumberForAddress(data.borrowerAddress)} />
-                {shortenAddress(data.borrowerAddress)}
+            <Jazzicon diameter={50} seed={jsNumberForAddress(data.borrower)} />
+                {shortenAddress(data.borrower)}
             </div>
 
             {/* Currency and Amount */}
@@ -37,22 +37,22 @@ export default function BorrowerSection({index,data}){
                 <USDC width="2rem"></USDC>}
                 {data.currency=="ETH" &&
                 <ETH width="2rem"></ETH>}
-            
+                <DAI width="2rem"></DAI>
                 
-                {data.value} {data.currency}
+                {data.borrowAmount%18} DAI
             </div>
             {/* Loan Maturity, Credit Score, Salary History, and APR */}
-            <div class="col-span-2">{data.maturity}</div>
-            <div class="col-span-2">{data.creditScore}</div>
-            <div class="col-span-2">{data.salaryHistory}</div>
-            <div class="col-span-2">{data.APR}</div>
+            <div class="col-span-2">{data.paybackMonths} months</div>
+            {/* <div class="col-span-2">{data.creditScore}</div>
+            <div class="col-span-2">{data.salaryHistory}</div> */}
+            <div class="col-span-2">{data.interestRate}%</div>
 
             {/* Status Indicator */}
             <div class="flex gap-2 items-center col-span-1" >
 
-                {data.status == "Active" && <div class="w-5 h-5 rounded-full bg-green-400"/>}
-                {data.status == "Inactive" && <div class="w-5 h-5 rounded-full bg-red-400"/>}
-                {data.status}
+                <div class="w-5 h-5 rounded-full bg-green-400"/> Active
+                {/* {data.status == "Inactive" && <div class="w-5 h-5 rounded-full bg-red-400"/>}
+                {data.status} */}
             </div>
         </div>
         

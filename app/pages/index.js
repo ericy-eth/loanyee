@@ -10,6 +10,10 @@ import { UserContext } from "../context/useContext";
 
 import dataSet from "../data/borrowerList"
 
+//API Calls
+import fetchLoanHistory from "../api/fetchLoanHistory"
+const axios = require("axios")
+
 
 
 let ensName;
@@ -23,14 +27,43 @@ export default function Home() {
 
   const [data, setData] = useState();
 
+  const [loanData, setLoanData] = useState([])
+
   useEffect(() => {
     checkIfWalletConnected();
     fetchLoans();
   }, []);
 
   async function fetchLoans(){
-    let loanList = await fetch("https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20loan_5_769")
+
+    const getLoanHistory = async()=>{
+        const loanHistory = await axios.post(
+            'https://api.studio.thegraph.com/query/35243/loanyee/0.1.17',
+            {
+                query:`
+                {
+                    loanHistories(first: 5) {
+                      id
+                      interestRate
+                      borrowAmount
+                      interestRate
+                      paybackMonths
+                      borrower
+                    }
+                }
+                `
+            }
+        )
+        return loanHistory
+
+    }
+
+    let loanList = await fetch("https://testnet.tableland.network/query?s=SELECT%20*%20FROM%20loan_5_775")
     const data = await loanList.json()
+    const loanDataTemp = await getLoanHistory()
+    console.log("Loan data from the graph returns ", loanDataTemp.data.data.loanHistories);
+    setLoanData(loanDataTemp.data.data.loanHistories)
+    
     setData(data);
   }
 
@@ -115,13 +148,13 @@ export default function Home() {
       </div> */}
 
       {/* Categories */}
-      <div class="container mt-10 mx-auto py-5 grid grid-cols-13 justify-between text-xl text-stone-500 items-center">
+      <div class="container mt-10 mx-auto py-5 grid grid-cols-9 justify-between text-xl text-stone-500 items-center">
         <div class="col-span-2">Borrower</div>
-        <div class="col-span-2">Value</div>
-        <div class="col-span-2">Maturity</div>
-        <div class="col-span-2">Credit Score</div>
-        <div class="col-span-2">Salary History</div>
-        <div class="col-span-2">APR</div>
+        <div class="col-span-2">Loan Value</div>
+        <div class="col-span-2">Duration</div>
+        {/* <div class="col-span-2">Credit Score</div> */}
+        {/* <div class="col-span-2">Salary History</div> */}
+        <div class="col-span-2">Interest Rate</div>
         <div class="col-span-1">Status</div>
       </div>
 
@@ -130,8 +163,8 @@ export default function Home() {
         style={{ maxHeight: "67rem" }}
         class="container mx-auto"
       >
-        {dataSet.map((borrower, index) => {
-          return <Link href="/borrowerDetail">
+        {loanData.map((borrower, index) => {
+          return <Link   href={{pathname: "/borrowerDetail", query: borrower}}>
           <a >
           <BorrowerSection index={index} data={borrower} />
 
