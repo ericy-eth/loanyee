@@ -13,6 +13,7 @@ But right now, if they receive salary with crypto, they have a challenge to borr
 ・They don’t like or don’t have a credit on TradFi
 
 That’s where **Loanyee** comes in!
+
 **Loanyee is uncollateralized lending against your on-chain salary**
 
 If they receive the salary with Superfluid cash stream, they can borrow instant and uncollateralized loans by splitting some portion of their future salary to lenders.
