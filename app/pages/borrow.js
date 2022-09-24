@@ -149,33 +149,7 @@ export default function Borrow(){
     }
     return(
         <>
-        <header class="flex justify-between align-middle py-4 px-8 border-b-2 border-grey-200">
-            <Link href="/">
-            <a class="text-4xl hover:opacity-60 font-bold py-2 px-5 text-black " > 
-            🌀 Loanyee
-            </a>
-            </Link>
-
-
-<div class="flex flex-row gap-3 items-center">
-
-    
-      <a class="text-md m-0 border-black border-2 text-black bg-white py-1.5 px-5 rounded-full">
-        Become a Borrower
-      </a>
-  
-
-  
-    <a onClick={connectWallet} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">
-        {!isWalletConnected ? <>Sign In </> :<>Connected!</>}
-      </a>
-
-</div>
-
-
-
-        </header>
-        
+       
         <div class="mt-5 container mx-auto max-w-2xl ">
           
         <header class=" flex flex-row justify-center items-center text-center align-middle gap-5">
