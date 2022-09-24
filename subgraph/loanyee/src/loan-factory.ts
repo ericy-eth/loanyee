@@ -5,7 +5,7 @@ import { loanHistory } from "../generated/schema"
 export function handleloanCreated(event: loanCreated): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
-  let entity = loanHistory.load(event.transaction.from.toHex())
+  let entity = loanHistory.load(event.transaction.hash.toHexString())
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
@@ -28,6 +28,8 @@ export function handleloanCreated(event: loanCreated): void {
   entity.borrowToken = event.params.borrowToken
   entity.loanId = event.params.loanId
   entity.paybackMonths = event.params.paybackMonths
+
+  entity.id = event.transaction.hash.toHexString()
   
 
   // Entities can be written to the store with `.save()`

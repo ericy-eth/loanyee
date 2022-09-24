@@ -6,7 +6,8 @@
     "@tableland/evm": "^2.0.4",
     "dotenv": "^16.0.2",
     "hardhat": "^2.11.2",
-    "hardhat-contract-sizer": "^2.6.1"
+    "hardhat-contract-sizer": "^2.6.1",
+    "usingtellor": "^4.0.7"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",
