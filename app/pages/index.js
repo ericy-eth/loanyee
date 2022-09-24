@@ -16,8 +16,8 @@ import fetchLoanHistory from "../api/fetchLoanHistory"
 const axios = require("axios")
 
 
-
 let ensName;
+
 
 
 
@@ -39,11 +39,11 @@ export default function Home() {
 
     const getLoanHistory = async()=>{
         const loanHistory = await axios.post(
-            'https://api.studio.thegraph.com/query/35243/loanyee/0.2.8',
+          "https://api.studio.thegraph.com/query/35243/loanyee/0.2.8",
             {
                 query:`
                 {
-                    loanHistories(first: 20) {
+                    loanHistories(first: 10, orderBy: loanId, orderDirection:desc) {
                       id
                       interestRate
                       borrowAmount

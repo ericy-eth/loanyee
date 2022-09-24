@@ -134,7 +134,7 @@ console.log("borrow data is ", borrowerData);
                     <div class="flex flex-col">
                         <p class="text-md text-gray-500">Loan Value</p>
                         <div class="flex gap-2" >
-                        <DAI width={"2rem"}></DAI> <p class="text-2xl font-medium">{borrowerData.borrowAmount%18}</p>
+                        <DAI width={"2rem"}></DAI> <p class="text-2xl font-medium">{borrowerData.borrowAmount/1000000000000000000}</p>
                         </div>
                     </div>
                     <div class="flex flex-col">
