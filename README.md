@@ -22,7 +22,9 @@ For lenders, they can also enjoy higher APY than overcollateralized lending prot
 We make it happen with just simple steps: 
 
 **1.** Borrowers set their loan condition like the amount or duration they want to borrow. we limit it with 50% DTI (debt-to-income ratio) as maximum.
+
 **2.** Borrowers ask employers to change the destination of their salary stream, from their wallet address to our contract address.
+
 **3.** Once lenders deploy the loan to borrowers, the salary stream will be automatically split to borrowers and lenders, depending on the loan condition and interest rate.
 
 This is just a beginning, we are planning to improve the mechanic to be more capital efficient, like Dynamic APR based on DTI and employer/employee credit, peer-to-pool model instead of peer-to-peer by dividing the borrower with the risk level, and collateral mechamism to reduce the risk.
