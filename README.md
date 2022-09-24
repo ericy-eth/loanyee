@@ -28,6 +28,10 @@ We make it happen with just simple steps:
 
 **3.** Once lenders deploy the loan to borrowers, the salary stream will be automatically split to borrowers and lenders, depending on the loan condition and interest rate.
 
-This is just a beginning, we are planning to improve the mechanic to be more capital efficient, like Dynamic APR based on DTI and employer/employee credit, peer-to-pool model instead of peer-to-peer by dividing the borrower with the risk level, and collateral mechamism to reduce the risk.
-Also, we are planing to use ZKP to hide their actual wallet address, so they can borrow money while keeping their privacy.
+This is just a beginning, we are planning to improve the protocol to be more capital efficient:
+-Dynamic APR based on DTI and employer/employee credit
+-peer-to-pool model instead of peer-to-peer by dividing the borrower with the risk level
+-collateral mechamism to reduce the risk
+-ZKP to hide their actual wallet address, so they can borrow money while keeping their privacy.
+
 We will expand the use cases, not only employees but also business or creators who receive income with Superfluid money stream.
