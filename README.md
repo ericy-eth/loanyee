@@ -9,10 +9,10 @@
 DeFi enables the finance without middleman and it is already a big financial market with $70 billion TVL. But, the current DeFi focuses on asset portfolios, where people can manage and increase their assets, not so much real use cases yet.
 
 We believe next billons people come to crypto space for income opportunity, which is more familiar for them, compared to asset management.
-But right now, if they receive salary with crypto, they have a challenge to borrow money in both DeFi and TradFi. 
-・Major lending protocols are still overcollateralized with the need of 125% collateral
-・Existing undercollateralized lending protocols are mainly for institutions
-・They don’t like or don’t have a credit on TradFi
+But right now, if they receive salary with crypto, they have a challenge to borrow money in both DeFi and TradFi: 
+- Major lending protocols are still overcollateralized with the need of 125% collateral
+- Existing undercollateralized lending protocols are mainly for institutions
+- They don’t like or don’t have a credit on TradFi
 
 ## Solution
 
@@ -24,7 +24,7 @@ If they receive the salary with Superfluid cash stream, they can borrow instant 
 Our goal is to empower people and help their daily life by giving them the access to uncollateralized loans and providing instant funds. 
 For lenders, they can also enjoy higher APY than overcollateralized lending protocol up to 30%.
 
-We make it happen with just simple steps: 
+We make it happen with just 3 simple steps: 
 
 **1.** Borrowers set their loan condition like the amount or duration they want to borrow. we limit it with 50% DTI (debt-to-income ratio) as maximum.
 
