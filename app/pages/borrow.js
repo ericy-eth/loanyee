@@ -67,7 +67,7 @@ export default function Borrow(){
     const APY = 0.10
 
     //List items
-    const listItems = [<SetupLoan setFunctions={setFunctions} formState={formState} APY={APY} creditScore={3}/>,<EmployerApproval/>, <Completed formState={formState} APY={APY}/>]
+    const listItems = [<SetupLoan key={1} setFunctions={setFunctions} formState={formState} APY={APY} creditScore={3}/>,<EmployerApproval key={2} />, <Completed key={3} formState={formState} APY={APY}/>]
 
    
 
@@ -95,7 +95,7 @@ export default function Borrow(){
 
     // const borrowAmountInWeiString = ethers.utils.formatEther(borrowAmountInWei);
     const {config} = usePrepareContractWrite({
-        addressOrName:  "0x60Fbd177b7B4311ab36134C106A88f337e981Ca9",
+        addressOrName:  "0x60Fbd177b7B4311ab36134C106A88f337e981Ca9", //change to new LoanFactory address goerli
         contractInterface: loanABI,
         functionName: "createNewLoan",
         args:[borrowAmount+"000000000000000000", 10, loanDuration, employerAddress, userAddress, "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9"],
@@ -115,12 +115,12 @@ export default function Borrow(){
     return(
         <>
        
-        <div class="mt-5 container mx-auto max-w-2xl ">
+        <div className="mt-5 container mx-auto max-w-2xl ">
           
-        <header class=" flex flex-row justify-center items-center text-center align-middle gap-5">
-                <div class="flex flex-row items-center gap-3">
-                    <div class="bg-black rounded-full w-10 h-10 flex align-middle items-center justify-center"> 
-                        <p class="text-white">
+        <header className=" flex flex-row justify-center items-center text-center align-middle gap-5">
+                <div className="flex flex-row items-center gap-3">
+                    <div className="bg-black rounded-full w-10 h-10 flex align-middle items-center justify-center"> 
+                        <p className="text-white">
                             1
                         </p>
                     </div>
@@ -128,9 +128,9 @@ export default function Borrow(){
                 </div>
                 <ArrowForwardIosIcon/>
                 {/* "flex flex-row opacity-50 items-center gap-3" */}
-                <div class={currentItem==0 ? "flex flex-row opacity-50 items-center gap-3" :"flex flex-row items-center gap-3" }>
-                    <div class="bg-black rounded-full w-10 h-10 flex align-middle items-center justify-center"> 
-                        <p class="text-white">
+                <div className={currentItem==0 ? "flex flex-row opacity-50 items-center gap-3" :"flex flex-row items-center gap-3" }>
+                    <div className="bg-black rounded-full w-10 h-10 flex align-middle items-center justify-center"> 
+                        <p className="text-white">
                             2
                         </p>
                     </div>
@@ -138,9 +138,9 @@ export default function Borrow(){
                 </div>
                 <ArrowForwardIosIcon/>
 
-                <div class={currentItem<2 ? "flex flex-row opacity-50 items-center gap-3" : "flex flex-row items-center gap-3" }>
-                    <div class="bg-black rounded-full w-10 h-10 flex align-middle items-center justify-center"> 
-                        <p class="text-white">
+                <div className={currentItem<2 ? "flex flex-row opacity-50 items-center gap-3" : "flex flex-row items-center gap-3" }>
+                    <div className="bg-black rounded-full w-10 h-10 flex align-middle items-center justify-center"> 
+                        <p className="text-white">
                             3
                         </p>
                     </div>
@@ -150,21 +150,21 @@ export default function Borrow(){
            {listItems[currentItem]}
 
            {/* Render Buttons to go back or forward */}
-            <div class="flex justify-around mt-5">
-            {currentItem==2 && <button onClick={prevPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Back</button>}
+            <div className="flex justify-around mt-5">
+            {currentItem==2 && <button onClick={prevPage} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Back</button>}
 
-            {currentItem==0 && <button onClick={submitForm} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>}
+            {currentItem==0 && <button onClick={submitForm} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>}
 
             {currentItem==1 &&
-                <button onClick={nextPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>
+                <button onClick={nextPage} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>
             }
 
 
 
             {/* {currentItem==2 ?
-                <button onClick={submitForm} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>
+                <button onClick={submitForm} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>
                         :
-                <button onClick={nextPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>
+                <button onClick={nextPage} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>
 
             }
                  */}

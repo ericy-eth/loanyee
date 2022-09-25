@@ -45,12 +45,23 @@ export default function BorrowerDetail() {
 
   //Get loanContract Address
   const {data: employmentLoanAddress} = useContractRead({
-    addressOrName: '0x60Fbd177b7B4311ab36134C106A88f337e981Ca9',
+    addressOrName: '0x60Fbd177b7B4311ab36134C106A88f337e981Ca9', //change this to new LoanFactory
     contractInterface: loanFactoryABI,
     functionName: 'idToLoan',
     args: borrowerData.loanId,
     onSuccess(data){
       setLoanContractAddress(data)
+    }
+  })
+
+  
+  //get borrow amount
+  const {data: borrowAmount} = useContractRead({
+    addressOrName: loanContractAddress,
+    contractInterface: loanFactoryABI,
+    functionName: 'borrowAmount',
+    onSuccess(data){
+      console.log("Borrow amount is ", data);
     }
   })
 
