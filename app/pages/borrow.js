@@ -24,7 +24,7 @@ console.log("loan ABI is ", loanABI);
 
 export default function Borrow(){
 
-    const {address} = useAccount()
+    const {address:userAddress} = useAccount()
 
     const [currentItem, setCurrentItem] = useState(0)
 
@@ -98,19 +98,17 @@ export default function Borrow(){
         addressOrName:  "0x60Fbd177b7B4311ab36134C106A88f337e981Ca9",
         contractInterface: loanABI,
         functionName: "createNewLoan",
-        args:[borrowAmount+"000000000000000000", 10, loanDuration, employerAddress, address, "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9"],
+        args:[borrowAmount+"000000000000000000", 10, loanDuration, employerAddress, userAddress, "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9"],
         onSuccess(data) {
             console.log('Success', data)
         },
     })
-    const {write, isSuccess } = useContractWrite(config)
+    const {write:createLoan, isSuccess } = useContractWrite(config)
 
     
     function submitForm(){
-        const borrowAmountInWei = borrowAmount.concat("000000000000000000")
-        // setBorrowAmount(borrowAmountInWei)
         console.log("Borrow amount at this stage " + borrowAmount);
-        write()
+        createLoan()
         nextPage()
 
     }

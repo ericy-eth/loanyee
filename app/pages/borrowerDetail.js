@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/useContext";
 import { useRouter } from 'next/router'
+import { useContractRead, useContractWrite, usePrepareContractWrite, useAccount } from 'wagmi'
+
 
 
 import dataSet from '../data/loanHistoryList.js';
@@ -14,69 +16,77 @@ import LoanHistorySection from '../components/loanDetail/loanHistorySection';
 import USDC from '../components/cryptologos/usdc';
 import DAI from '../components/cryptologos/dai';
 
-export default function BorrowerDetail() {
+import loanFactoryABI from "../data/contractABI/LoanFactory.json"
+import employmentLoanABI from "../data/contractABI/EmploymentLoan.json"
+import { writeContract } from '@wagmi/core';
+import erc20ABI from "../data/contractABI/erc20TokenABI.json"
 
+
+//Helper Functions
+
+
+export default function BorrowerDetail() {
+  function shortenAddress(str){
+    return str.substring(0, 5) + "..." + str.substring(str.length - 3);
+  };
 
   //Router for passing data between pages
   const router = useRouter();
-const borrowerData = router.query;
-console.log("borrow data is ", borrowerData);
+  const borrowerData = router.query;
+
+  
+  const { user, setUser } = useContext(UserContext);
+  console.log("Borrower Data is ", borrowerData);
+
+  const [loanContractAddress,setLoanContractAddress] = useState("0x0000")
+  
+  //Get lender address
+  const {address:lenderAddress} = useAccount()
+
+  //Get loanContract Address
+  const {data: employmentLoanAddress} = useContractRead({
+    addressOrName: '0x60Fbd177b7B4311ab36134C106A88f337e981Ca9',
+    contractInterface: loanFactoryABI,
+    functionName: 'idToLoan',
+    args: borrowerData.loanId,
+    onSuccess(data){
+      setLoanContractAddress(data)
+    }
+  })
+
+  console.log("Loan contract address is ", loanContractAddress);
+
+  //Get DAI Token contract for lender to call approve()
+  const { config: approveERC20Config } = usePrepareContractWrite({
+    addressOrName: "0x88271d333C72e51516B67f5567c728E702b3eeE8",
+    contractInterface: erc20ABI,
+    functionName: 'approve',
+    args:[loanContractAddress, lenderAddress ]
+  })
+  
+  const {write:approveERC20, data, isSuccess} = useContractWrite(approveERC20Config)
+
+  //Prepare Lend Function
+  const { config: lendToBorrowerConfig } = usePrepareContractWrite({
+    addressOrName: loanContractAddress,
+    contractInterface: employmentLoanABI,
+    functionName: 'lend'
+  })
+
+  const {write: lendToBorrower} = useContractWrite(lendToBorrowerConfig)
+
 
   //Link for etherscan
-  const etherscanAddress = "https://etherscan.io/address/" + borrowerData.borrower
-  
+  const etherscanBorrowerAddress = "https://etherscan.io/address/" + borrowerData.borrower
+  const etherscanContractAddress = "https://etherscan.io/address/" + loanContractAddress
 
-    const { user, setUser } = useContext(UserContext);
-
-  const [isWalletConnected, setWalletConnected] = useState();
-
-  useEffect(() => {
-    checkIfWalletConnected();
-  }, []);
-  async function checkIfWalletConnected() {
-    try {
-      const { ethereum } = window;
-
-      if (!ethereum) {
-        console.log("Make sure you have metamask!");
-        return;
-      } else {
-        console.log("We have the ethereum object", ethereum);
-      }
-
-      const accounts = await ethereum.request({ method: "eth_accounts" });
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      ensName = await provider.resolveName("vitalik.eth");
-
-      console.log("ENS name is " + ensName);
-
-      if (accounts.length !== 0) {
-        const account = accounts[0];
-
-        console.log("Found an authorized account:", account);
-        setWalletConnected(true);
-        setUser({ account: account });
-      } else {
-        console.log("No authorized account found");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  function lend(){
+    approveERC20()
+    lendToBorrower()
   }
 
-  async function connectWallet() {
-    const { ethereum } = window;
+ 
 
-    if (!ethereum) {
-      console.log("No metamask detected");
-      return;
-    }
-
-    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    const account = accounts[0];
-    setUser({ account: account });
-    setWalletConnected(true);
-  }
   return (
 
     <div>
@@ -87,7 +97,7 @@ console.log("borrow data is ", borrowerData);
         {/* Title and Borrower */}
             <div class="flex justify-between">
                 <h1 class="font-semibold text-2xl">Borrower Detail</h1>
-                <button class="text-md hover:opacity-80  m-0 bg-stone-900 text-white py-2 px-5 rounded-full text-center">Lend to this Borrower</button>
+                <button onClick={lend} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white py-2 px-5 rounded-full text-center">Lend to this Borrower</button>
             </div>
 
             {/* Account Detail */}
@@ -97,7 +107,7 @@ console.log("borrow data is ", borrowerData);
                     <div class="flex gap-2 items-center">
 
                         <p class="text-xl font-medium">{borrowerData.borrower} </p>
-                        <a target="_blank" href={etherscanAddress}>
+                        <a target="_blank" href={etherscanBorrowerAddress}>
                             <Redirect width="1.5rem"/>
                         </a>
 
@@ -107,19 +117,19 @@ console.log("borrow data is ", borrowerData);
 
             {/* Loan Detail */}
             
-            <div class="flex flex-col border-2 divide-y divide-solid divide-gray-200 px-5 py-3 w-4/12 border-grey-200 rounded-md">
-                <div class="flex justify-between pb-2">
-                    <div class="flex flex-col">
+            <div class="grid grid-rows-2 flex-col border-2 divide-y divide-solid divide-gray-200 px-5 py-3 w-4/12 border-grey-200 rounded-md">
+                <div class="grid grid-cols-3 justify-between pb-2">
+                    <div class="flex col-span-1 flex-col">
                         <p class="text-md text-gray-500">Loan Value</p>
                         <div class="flex gap-2" >
                         <DAI width={"2rem"}></DAI> <p class="text-2xl font-medium">{borrowerData.borrowAmount/1000000000000000000}</p>
                         </div>
                     </div>
-                    <div class="flex flex-col">
+                    <div class="flex col-span-1 flex-col">
                         <p class="text-sm text-gray-500">Loan Duration</p>
                         <p class="text-xl font-medium">{borrowerData.paybackMonths} Months</p>
                     </div>
-                    <div class="flex flex-col ">
+                    <div class="flex col-span-1 flex-col ">
                         <p class="text-md text-gray-500 mr-5">APY</p>
                         <p class="text-2xl font-medium">{borrowerData.interestRate}%</p>
 
@@ -127,8 +137,8 @@ console.log("borrow data is ", borrowerData);
                 </div>
                
 
-                <div class="flex gap-36 pt-2 pr-6">
-                    <div class="flex flex-col">
+                <div class="grid grid-cols-3 justify-around pt-2 pr-6">
+                    <div class="flex flex-col col-span-1">
                         <p class="text-sm text-gray-500">Return Amount</p>
                         <div class="flex gap-2" >
                         <DAI width={"2rem"}></DAI> <p class="text-xl font-medium">{
@@ -138,11 +148,11 @@ console.log("borrow data is ", borrowerData);
                         </div>
                     </div>
              
-                    <div class="flex flex-col">
+                    <div class="flex flex-col col-span-1">
                         <p class="text-sm text-gray-500">Contract Address</p>
                         <div class="flex gap-2 items-center">
-                            <p class="text-xl font-medium">0x723...459</p>
-                            <a target="_blank" href='https://etherscan.io/address/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'>
+                            <p class="text-xl font-medium">{shortenAddress(loanContractAddress)}</p>
+                            <a target="_blank" href={etherscanContractAddress}>
                                 <Redirect width="1.2rem"/>
                             </a>
                         </div>
@@ -151,24 +161,30 @@ console.log("borrow data is ", borrowerData);
             </div>
 
             {/* Borrower Summary */}
+            <div class="flex flex-col gap-2">
 
-            <div class="flex flex-col gap-3">
-                <h1 class="font-medium text-xl">Borrower Summary</h1>
-                <div class="flex gap-10 w-5/12 justify-between">
-                    <div class="flex flex-col gap-2">
-                        <h1 class="text-gray-500">Credit Score</h1>
-                        <p class="text-xl">5</p>                            
-                    </div>
-                    <div class="flex flex-col gap-2">
-                          <h1 class="text-gray-500">Loan History</h1> 
-                          <p class="text-xl">100% Repayment</p> 
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <h1 class="text-gray-500">Salary History</h1>  
-                        <p class="text-xl">3 months</p>  
-                    </div>
-                </div>
+              <h1 class="font-medium text-xl">Borrower Summary</h1>
+
+              <div class="flex flex-col  gap-3 shrink w-4/12 bg-[#F5F9FF] rounded-md p-5">
+                  <div class="flex gap-10 justify-items-center items-center  ">
+                      <div class="flex flex-col gap-2 self-center">
+                          <h1 class="text-gray-500">Credit Score</h1>
+                          <p class="text-lg">5</p>                            
+                      </div>
+                      <div class=" divide-x divide-solid divide-gray-900"></div>
+                      <div class="flex flex-col gap-2">
+                            <h1 class="text-gray-500">Loan History</h1> 
+                            <p class="text-lg">100% Repayment</p> 
+                      </div>
+                      <div class="flex flex-col gap-2">
+                          <h1 class="text-gray-500">Salary History</h1>  
+                          <p class="text-lg">3 months</p>  
+                      </div>
+                  </div>
+              </div>
+
             </div>
+          
 
             {/* Loan History */}
             <div>

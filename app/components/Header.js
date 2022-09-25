@@ -22,12 +22,6 @@ const Header = () =>{
 
         setWalletConnected(isConnected);
     },[])
-
- 
-   
-
-
-  
     
 
     return(

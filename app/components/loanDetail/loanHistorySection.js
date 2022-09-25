@@ -19,7 +19,6 @@ export default function LoanHistorySection({index, data}){
         return str.substring(0, 5) + "..." + str.substring(str.length - 3);
     };
 
-    console.log("testing"+data);
     return(
         <div class={borrowerProfileCSS}>
         {/* Account profile and address */}

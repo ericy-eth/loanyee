@@ -51,6 +51,7 @@ export default function Home() {
                       interestRate
                       paybackMonths
                       borrower
+                      loanId
                     }
                 }
                 `

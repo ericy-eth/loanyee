@@ -9,11 +9,6 @@ import {IConstantFlowAgreementV1} from "@superfluid-finance/ethereum-contracts/c
 
 import {SuperAppBase} from "@superfluid-finance/ethereum-contracts/contracts/apps/SuperAppBase.sol";
 
-// PUSH Comm Contract Interface
-interface IPUSHCommInterface {
-    function sendNotification(address _channel, address _recipient, bytes calldata _identity) external;
-}
-
 /// @title Employment Loan Contract
 /// @author Superfluid
 contract EmploymentLoan is SuperAppBase {
@@ -58,8 +53,6 @@ contract EmploymentLoan is SuperAppBase {
 
     /// @notice Timestamp of the loan start time.
     uint256 public loanStartTime;
-
-    address public EPNS_COMM_ADDRESS = 0xb3971BCef2D791bc4027BbfedFb47319A4AAaaAa;
 
     // ---------------------------------------------------------------------------------------------
     //MODIFIERS
@@ -184,30 +177,6 @@ contract EmploymentLoan is SuperAppBase {
 
         //create flow to lender
         cfaV1.createFlow(msg.sender, borrowToken, getPaymentFlowRate());
-
-                //"0+3+Hooray! ", msg.sender, " sent ", token amount, " PUSH to you!"
-        IPUSHCommInterface(EPNS_COMM_ADDRESS).sendNotification(
-            0x7e2cE82d63e74b0125404D8172c12137F818aA24, // from channel
-            borrower, // to recipient, put address(this) in case you want Broadcast or Subset. For Targetted put the address to which you want to send
-            bytes(
-                string(
-                    // We are passing identity here: https://docs.epns.io/developers/developer-guides/sending-notifications/advanced/notification-payload-types/identity/payload-identity-implementations
-                    abi.encodePacked(
-                        "0", // this is notification identity: https://docs.epns.io/developers/developer-guides/sending-notifications/advanced/notification-payload-types/identity/payload-identity-implementations
-                        "+", // segregator
-                        "3", // this is payload type: https://docs.epns.io/developers/developer-guides/sending-notifications/advanced/notification-payload-types/payload (1, 3 or 4) = (Broadcast, targetted or subset)
-                        "+", // segregator
-                        "You receive a loan", // this is notificaiton title
-                        "+", // segregator
-                        "You receive a loan from ", // notification body
-                        addressToString(msg.sender), // notification body
-                        ". Your salary stream starts to be split to", // notification body
-                        addressToString(msg.sender), // notification body
-                        " based on your loan condition" // notification body
-                    )
-                )
-            )
-        );
 
         loanOpen = true;
         lender = msg.sender;
