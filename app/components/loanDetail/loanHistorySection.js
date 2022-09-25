@@ -20,15 +20,15 @@ export default function LoanHistorySection({index, data}){
     };
 
     return(
-        <div class={borrowerProfileCSS}>
+        <div className={borrowerProfileCSS}>
         {/* Account profile and address */}
-        <div class="flex gap-5 col-span-3  items-center ">
+        <div className="flex gap-5 col-span-3  items-center ">
         <Jazzicon diameter={50} seed={jsNumberForAddress(data.lenderAddress)} />
             {shortenAddress(data.lenderAddress)}
         </div>
 
         {/* Currency and Amount */}
-        <div class="flex gap-2 col-span-2 items-center">
+        <div className="flex gap-2 col-span-2 items-center">
             {data.currency=="USDC" && 
             <USDC width="2rem"></USDC>}
             {data.currency=="USDT" &&
@@ -40,15 +40,15 @@ export default function LoanHistorySection({index, data}){
             {data.value} 
         </div>
         {/* Loan Maturity, Credit Score, Salary History, and APR */}
-        <div class="col-span-2">{data.maturity}</div>
-        <div class="col-span-2">{shortenAddress(data.contractAddress)}</div>
-        <div class="col-span-2">{data.startDate}</div>
-        <div class="col-span-1">{data.APY}</div>
+        <div className="col-span-2">{data.maturity}</div>
+        <div className="col-span-2">{shortenAddress(data.contractAddress)}</div>
+        <div className="col-span-2">{data.startDate}</div>
+        <div className="col-span-1">{data.APY}</div>
 
         {/* Status Indicator */}
-        <div class="flex gap-2 items-center col-span-1" >
+        <div className="flex gap-2 items-center col-span-1" >
 
-            {data.status > 50 && <div class="w-5 h-5 rounded-full bg-green-400"/>} {data.status}
+            {data.status > 50 && <div className="w-5 h-5 rounded-full bg-green-400"/>} {data.status}
         </div>
     </div>
 
