@@ -28,8 +28,7 @@ export default function Borrow(){
 
     const [currentItem, setCurrentItem] = useState(0)
 
-    const {data:signer} = useSigner()
-    let loanFactory = new ethers.Contract("0xFB26b9144f13e7D2485C4df2cCbb977660DC01fc", loanABI, signer)
+   
 
 
     // Form Data
@@ -105,17 +104,14 @@ export default function Borrow(){
     const {write:createLoan, isSuccess } = useContractWrite(config)
 
     
-    // function submitForm(){
-    //     console.log("Borrow amount at this stage " + borrowAmount);
-    //     createLoan()
-    //     nextPage()
-
-    // }
-
-    async function submitForm(){
-        await loanFactory.createNewLoan(ethers.utils.parseEther(borrowAmount), 8, loanDuration, employerAddress, userAddress,"0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9")
+    function submitForm(){
+        console.log("Borrow amount at this stage " + borrowAmount);
+        createLoan()
         nextPage()
+
     }
+
+   
     return(
         <>
        

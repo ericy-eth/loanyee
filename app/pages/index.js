@@ -44,7 +44,7 @@ export default function Home() {
             {
                 query:`
                 {
-                    loanHistories(first: 20, orderBy: loanId, orderDirection:desc) {
+                    loanHistories(first: 6, orderBy: loanId, orderDirection:desc) {
                       id
                       interestRate
                       borrowAmount
