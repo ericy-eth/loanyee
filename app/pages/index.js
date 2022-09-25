@@ -40,7 +40,7 @@ export default function Home() {
 
     const getLoanHistory = async()=>{
         const loanHistory = await axios.post(
-          "https://api.studio.thegraph.com/query/35243/loanyee/0.2.8",
+          "https://api.studio.thegraph.com/query/35243/loanyee/0.3.0",
             {
                 query:`
                 {
