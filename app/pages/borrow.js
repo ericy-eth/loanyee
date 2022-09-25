@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { ethers } from "ethers";
 
-import abi from "../data/contractABI/LoanFactory.json"
+import abi from "../data/contractABI/LoanFactory"
 
 import EmployerApproval from "../components/borrowSignup/employerApproval";
 import SetupLoan from "../components/borrowSignup/setupLoan";
@@ -14,7 +14,7 @@ import { UserContext } from "../context/useContext";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { list } from "postcss";
-import ABI from "../data/contractABI/LoanFactory.json"
+import ABI from "../data/contractABI/LoanFactory"
 
 import {usePrepareContractWrite, useContractWrite, useAccount, useSigner} from "wagmi"
 

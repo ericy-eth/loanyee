@@ -19,12 +19,12 @@ import LoanHistorySection from '../components/loanDetail/loanHistorySection';
 import USDC from '../components/cryptologos/usdc';
 import DAI from '../components/cryptologos/dai';
 
-import loanFactoryABI from "../data/contractABI/LoanFactory.json"
-import erc20ABI from "../data/contractABI/erc20TokenABI.json"
+import loanFactoryABI from "../data/contractABI/LoanFactory"
+import erc20ABI from "../data/contractABI/erc20TokenABI"
 // import employmentLoanABI from "../data/contractABI/EmploymentLoan.json"
 import { writeContract } from '@wagmi/core';
 
-import employmentLoanABI from "../data/contractABI/employmentLoan.json"
+import employmentLoanABI from "../data/contractABI/employmentLoan"
 //Helper Functions
 
  
