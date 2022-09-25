@@ -31,17 +31,17 @@ const Header = () =>{
     
 
     return(
-        <header class="flex justify-between align-middle py-6 px-8 ">
+        <header className="flex justify-between align-middle py-6 px-8 ">
             <Link href="/">
             <div className="items-center" >
                 <Image src={loanyeeLogo} width={200} height={40}></Image>
             </div>
             </Link>
 
-            <div class="flex flex-row gap-3 items-center">
+            <div className="flex flex-row gap-3 items-center">
                 {walletConnected &&
                 <Link href="/borrow">
-                <a class="text-lg hover:opacity-60 m-0 border-black border-2 text-black bg-white py-2 px-5 rounded-full">
+                <a className="text-lg hover:opacity-60 m-0 border-black border-2 text-black bg-white py-2 px-5 rounded-full">
                 Become a Borrower
                 </a>
             </Link>
