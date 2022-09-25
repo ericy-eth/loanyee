@@ -24,7 +24,7 @@ async function main() {
 
     console.log("running deploy script...")
     // We get the contract to deploy
-    const LoanFactory = await hre.ethers.getContractFactory("LoanFactory")
+    const LoanFactory = await hre.ethers.getContractFactory("LoanFactoryEPNS")
     const loanFactory = await LoanFactory.connect(deployer).deploy("0xDA8EA22d092307874f30A1F277D1388dca0BA97a")
 
     await loanFactory.deployed()
