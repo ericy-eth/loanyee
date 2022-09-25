@@ -5,7 +5,7 @@ const LoanFactoryABI =
 require("dotenv").config()
 
 //place deployed address of the loan factory here...
-const LoanFactoryAddress = "0x60Fbd177b7B4311ab36134C106A88f337e981Ca9"
+const LoanFactoryAddress = "0xFB26b9144f13e7D2485C4df2cCbb977660DC01fc"
 
 //NOTE: this is set as the goerli url, but can be changed to reflect your RPC URL and network of choice
 const url = process.env.GOERLI_URL
@@ -37,7 +37,7 @@ async function main() {
         LoanFactoryABI,
         customHttpProvider
     )
-
+//0xf2691e33794f97084c287612a82af2f3cb6b10f2b7daf01ca9b7bd6425af0c22
     await loanFactory
         .connect(borrower)
         .createNewLoan(

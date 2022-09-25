@@ -1,6 +1,6 @@
 const ethers = require("ethers")
 const { Framework } = require("@superfluid-finance/sdk-core")
-const LoanContract = require("../artifacts/contracts/EmploymentLoan.sol/EmploymentLoan.json")
+const LoanContract = require("../artifacts/contracts/LoanFactory.sol/EmploymentLoan.json")
 const { network } = require("hardhat")
 const LoanContractABI = LoanContract.abi
 require("dotenv").config()
@@ -20,7 +20,7 @@ async function main() {
     })
 
     //most recent loan address
-    const loanAddress = "0x367e38d73e1B25508E6C9d98e93DbB2F80de3ca8" //NOTE - must be updated to reflect actual loan address
+    const loanAddress = "0x38648A4713bCe5981241d6C6603dD770d9788692" //NOTE - must be updated to reflect actual loan address
 
     const lender = sf.createSigner({
         privateKey: process.env.LENDER_PRIVATE_KEY,

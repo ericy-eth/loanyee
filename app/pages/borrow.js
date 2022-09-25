@@ -95,7 +95,7 @@ export default function Borrow(){
 
     // const borrowAmountInWeiString = ethers.utils.formatEther(borrowAmountInWei);
     const {config} = usePrepareContractWrite({
-        addressOrName:  "0x60Fbd177b7B4311ab36134C106A88f337e981Ca9", //change to new LoanFactory address goerli
+        addressOrName:  "0xFB26b9144f13e7D2485C4df2cCbb977660DC01fc",
         contractInterface: loanABI,
         functionName: "createNewLoan",
         args:[borrowAmount+"000000000000000000", 10, loanDuration, employerAddress, userAddress, "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9"],
@@ -161,13 +161,7 @@ export default function Borrow(){
 
 
 
-            {/* {currentItem==2 ?
-                <button onClick={submitForm} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>
-                        :
-                <button onClick={nextPage} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>
-
-            }
-                 */}
+          
 
             </div>
         </div>

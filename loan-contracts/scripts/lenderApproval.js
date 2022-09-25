@@ -2,7 +2,7 @@
 const loanAddress = "0x274149aBc1c8Cc942EFd710e6D8142101efFE608" //NOTE - update w actual loan address
 const ethers = require("ethers")
 const { Framework } = require("@superfluid-finance/sdk-core")
-const LoanContract = require("../artifacts/contracts/EmploymentLoan.sol/EmploymentLoan.json")
+const LoanContract = require("../artifacts/contracts/LoanFactory.sol/EmploymentLoan.json")
 const LoanContractABI = LoanContract.abi
 require("dotenv").config()
 
