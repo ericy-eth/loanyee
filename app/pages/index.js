@@ -14,7 +14,6 @@ import dataSet from "../data/borrowerList"
 
 
 //API Calls
-import fetchLoanHistory from "../api/fetchLoanHistory"
 const axios = require("axios")
 
 
