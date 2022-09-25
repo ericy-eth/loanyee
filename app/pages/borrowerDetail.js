@@ -45,7 +45,7 @@ export default function BorrowerDetail() {
 
   //Get loanContract Address
   const {data: employmentLoanAddress} = useContractRead({
-    addressOrName: '0x60Fbd177b7B4311ab36134C106A88f337e981Ca9',
+    addressOrName: '0xFB26b9144f13e7D2485C4df2cCbb977660DC01fc',
     contractInterface: loanFactoryABI,
     functionName: 'idToLoan',
     args: borrowerData.loanId,
