@@ -11,27 +11,28 @@ import { UserContext } from "../context/useContext";
 
 import dataSet from "../data/borrowerList"
 
+
+
 //API Calls
 import fetchLoanHistory from "../api/fetchLoanHistory"
 const axios = require("axios")
 
 
-let ensName;
 
 
 
 
 export default function Home() {
+
+
   const { user, setUser } = useContext(UserContext);
 
   const [isWalletConnected, setWalletConnected] = useState();
 
-  const [data, setData] = useState();
 
   const [loanData, setLoanData] = useState([])
 
   useEffect(() => {
-    checkIfWalletConnected();
     fetchLoans();
   }, []);
 
@@ -43,7 +44,7 @@ export default function Home() {
             {
                 query:`
                 {
-                    loanHistories(first: 10, orderBy: loanId, orderDirection:desc) {
+                    loanHistories(first: 5, orderBy: loanId, orderDirection:desc) {
                       id
                       interestRate
                       borrowAmount
@@ -66,77 +67,10 @@ export default function Home() {
     console.log("Loan data from the graph returns ", loanDataTemp.data.data.loanHistories);
     setLoanData(loanDataTemp.data.data.loanHistories)
     
-    setData(data);
-  }
-
-  async function checkIfWalletConnected() {
-    try {
-      const { ethereum } = window;
-
-      if (!ethereum) {
-        console.log("Make sure you have metamask!");
-        return;
-      } else {
-        console.log("We have the ethereum object", ethereum);
-      }
-
-      const accounts = await ethereum.request({ method: "eth_accounts" });
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      ensName = await provider.resolveName("vitalik.eth");
-
-      console.log("ENS name is " + ensName);
-
-      if (accounts.length !== 0) {
-        const account = accounts[0];
-
-        console.log("Found an authorized account:", account);
-        setWalletConnected(true);
-        setUser({ account: account });
-      } else {
-        console.log("No authorized account found");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function connectWallet() {
-    const { ethereum } = window;
-
-    if (!ethereum) {
-      console.log("No metamask detected");
-      return;
-    }
-
-    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    const account = accounts[0];
-    setUser({ account: account});
-    setWalletConnected(true);
   }
  
   return (
     <div class="bg-white">
-      {/* Header */}
-      <header class="flex justify-between align-middle py-6 px-8 border-b-2 border-grey-200">
-        <div className="items-center" >
-          <Image src={loanyeeLogo} width={200} height={40}></Image>
-        </div>
-
-        <div class="flex flex-row gap-3 items-center">
-          <Link href="/borrow">
-            <a class="text-lg hover:opacity-60 m-0 border-black border-2 text-black bg-white py-2 px-5 rounded-full">
-              Become a Borrower
-            </a>
-          </Link>
-
-          <a
-            onClick={connectWallet}
-            class="text-lg hover:opacity-80  m-0 bg-stone-900 text-white w-48 py-2 px-5 rounded-full text-center"
-          >
-            {!isWalletConnected ? <>Connect Wallet </> : <>Connected!</>}
-          </a>
-        </div>
-      </header>
 
       {/* Banner */}
       <div class="container mt-12 mx-auto">

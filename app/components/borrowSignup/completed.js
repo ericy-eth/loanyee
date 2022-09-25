@@ -10,45 +10,64 @@ import { useState, useEffect, useRef } from "react"
 export default function Completed({formState, APY}){
 
     return(
-        <div class="flex justify-center max-h-100">
+        <div class="flex flex-col gap-16 max-h-100">
+
+        <div class="flex flex-row items-center mt-8 gap-2">
+            <h1 class="font-bold text-2xl">
+            Loan Created!
+            </h1>
+            🎉
             
-    
-        
-        <div class="flex  mb-5 ">
-                <div class="flex flex-col gap-5   mt-8 font-bold align-center  justify-center text-2xl">
-        <div class="flex justify-center">
-            Completed!
         </div>
 
-        <div class="flex flex-col gap-1 max-w-2 font-medium">
-            <h1 class="text-base">Employer Address</h1>
-            <p>{formState.employerAddress}</p>
+        
+
+        <div class="flex flex-col gap-5">
+
+            <div class="flex flex-col gap-2">
+                <p class="text-lg font-semibold">Borrowed Amount</p>
+                <div class="flex flex-row bg-[#F8F8F8] rounded-md p-3  gap-1">
+                    <div class="font-medium text-lg" >
+                        {formState.borrowAmount} {formState.currency} 
+                    </div>
+                    <DAI width="1.5rem"></DAI>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <p class="text-lg font-semibold">Annual Interest</p>
+                <div class="flex flex-row bg-[#F8F8F8] rounded-md p-3  gap-1">
+                    <div class="font-medium text-lg" >
+                        {APY*100}%
+                    </div>
+                </div>
+                
+
+
+            </div>
+
+            <div class="flex flex-col gap-2 mb-10">
+                <p class="text-lg font-semibold">Loan Duration</p>
+                <div class="flex flex-row bg-[#F8F8F8] rounded-md p-3  gap-1">
+                <div class="font-medium text-lg" >
+                    {formState.loanDuration} month(s)
+                </div>
+
+                </div>
+            </div>
+           
+           
+            
         </div>
+
+        
+       
+        
       
-        <div class="flex flex-col gap-1 font-semibold">
-            <h1 class="text-base">Borrow Amount</h1>
-            <p class="flex gap-2">
-                {formState.borrowAmount} {formState.currency} {formState.currency=="USDC" && <USDC width="25px"></USDC>} {formState.currency=="USDT" && <USDT width="25px"></USDT>} {formState.currency=="DAI" && <DAI width="25px"></DAI>}</p>
-        </div>
-
-        <div class="flex flex-col gap-1 max-w-2 font-medium">
-            <h1 class="text-base">Annual Interest</h1>
-            <p>{APY*100}%</p>
-        </div>
-
-        <div class="flex flex-col gap-1 max-w-2 font-medium">
-            <h1 class="text-base">Loan Duration</h1>
-            <p>{formState.loanDuration} {formState.loanDurationType}(s)</p>
-        </div>
-
-        <div class="flex flex-col gap-1 max-w-2 font-medium">
-            <h1 class="text-base">Return Cost</h1>
-            <p> {formState.borrowAmount}  {formState.currency} + {parseInt(formState.borrowAmount)*((parseInt(formState.loanDuration)/12)*parseInt(formState.APY))}  {formState.currency}</p>
-        </div>
         
+  
+   
     </div>
-        </div>
-        </div>
 
 )
     

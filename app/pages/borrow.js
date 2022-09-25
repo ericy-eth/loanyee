@@ -16,12 +16,15 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { list } from "postcss";
 import ABI from "../data/contractABI/LoanFactory.json"
 
+import {usePrepareContractWrite, useContractWrite, useAccount} from "wagmi"
+
 let loanABI =  ABI
 
 console.log("loan ABI is ", loanABI);
 
 export default function Borrow(){
 
+    const {address} = useAccount()
 
     const [currentItem, setCurrentItem] = useState(0)
 
@@ -57,7 +60,8 @@ export default function Borrow(){
         borrowAmount: borrowAmount,
         loanDuration: loanDuration,
         loanDurationType: loanDurationType,
-        employerAddress: employerAddress
+        employerAddress: employerAddress,
+        formIsEmpty: formIsEmpty
     }
 
     const APY = 0.10
@@ -65,57 +69,8 @@ export default function Borrow(){
     //List items
     const listItems = [<SetupLoan setFunctions={setFunctions} formState={formState} APY={APY} creditScore={3}/>,<EmployerApproval/>, <Completed formState={formState} APY={APY}/>]
 
-  
-    useEffect(()=>{
-      checkIfWalletConnected()
-    },[])
-  
+   
 
-    async function checkIfWalletConnected(){
-        try {
-          const { ethereum } = window;
-    
-          if (!ethereum) {
-            console.log("Make sure you have metamask!");
-            return;
-          } else {
-            console.log("We have the ethereum object", ethereum);
-          }
-    
-          const accounts = await ethereum.request({ method: "eth_accounts" });
-          const provider = new ethers.providers.Web3Provider(ethereum);
-    
-          if (accounts.length !== 0) {
-            const account = accounts[0];
-            
-    
-            console.log("Found an authorized account:", account);
-            setWalletConnected(true)
-            setUser({account:account})
-    
-          } else {
-            console.log("No authorized account found")
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      }
-
-      async function connectWallet(){
-        const {ethereum} = window
-  
-        if(!ethereum){
-            console.log("No metamask detected");
-            return
-        }
-  
-        const accounts = await ethereum.request({method: "eth_requestAccounts"});
-        const account = accounts[0]
-        setUser({account:account})
-        setWalletConnected(true)
-  
-    
-    }
 
     function nextPage(){
         if(currentItem==0){
@@ -137,45 +92,31 @@ export default function Borrow(){
         setCurrentItem((currentItem)=>currentItem-1)
 
     }
-    
-    async function submitForm(){
-        const { ethereum } = window;
 
-        const provider = new ethers.providers.Web3Provider(ethereum);        
-        const signer = provider.getSigner(user.account)
-        const LoanFactoryContract = new ethers.Contract("0x60Fbd177b7B4311ab36134C106A88f337e981Ca9", loanABI, signer)
-        const loanId = await LoanFactoryContract.createNewLoan(ethers.utils.parseEther(borrowAmount), 10, loanDuration, employerAddress, user.account, "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9")
+    // const borrowAmountInWeiString = ethers.utils.formatEther(borrowAmountInWei);
+    const {config} = usePrepareContractWrite({
+        addressOrName:  "0x60Fbd177b7B4311ab36134C106A88f337e981Ca9",
+        contractInterface: loanABI,
+        functionName: "createNewLoan",
+        args:[borrowAmount+"000000000000000000", 10, loanDuration, employerAddress, address, "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9"],
+        onSuccess(data) {
+            console.log('Success', data)
+        },
+    })
+    const {write, isSuccess } = useContractWrite(config)
+
+    
+    function submitForm(){
+        const borrowAmountInWei = borrowAmount.concat("000000000000000000")
+        // setBorrowAmount(borrowAmountInWei)
+        console.log("Borrow amount at this stage " + borrowAmount);
+        write()
+        nextPage()
 
     }
     return(
         <>
-        <header class="flex justify-between align-middle py-4 px-8 border-b-2 border-grey-200">
-            <Link href="/">
-            <a class="text-4xl hover:opacity-60 font-bold py-2 px-5 text-black " > 
-            🌀 Loanyee
-            </a>
-            </Link>
-
-
-<div class="flex flex-row gap-3 items-center">
-
-    
-      <a class="text-md m-0 border-black border-2 text-black bg-white py-1.5 px-5 rounded-full">
-        Become a Borrower
-      </a>
-  
-
-  
-    <a onClick={connectWallet} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">
-        {!isWalletConnected ? <>Sign In </> :<>Connected!</>}
-      </a>
-
-</div>
-
-
-
-        </header>
-        
+       
         <div class="mt-5 container mx-auto max-w-2xl ">
           
         <header class=" flex flex-row justify-center items-center text-center align-middle gap-5">
@@ -212,22 +153,25 @@ export default function Borrow(){
 
            {/* Render Buttons to go back or forward */}
             <div class="flex justify-around mt-5">
-            
-            {currentItem>0 &&
-                    <button onClick={prevPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Back</button>
+            {currentItem==2 && <button onClick={prevPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Back</button>}
 
-                }
+            {currentItem==0 && <button onClick={submitForm} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>}
 
-            {currentItem==2 ?
+            {currentItem==1 &&
+                <button onClick={nextPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>
+            }
+
+
+
+            {/* {currentItem==2 ?
                 <button onClick={submitForm} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>
                         :
                 <button onClick={nextPage} class="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>
 
             }
-                
+                 */}
 
             </div>
-            {formIsEmpty &&  <div class="justify-center mt-5">Loan amount or loan duration cannot be 0</div>}
         </div>
         </>
     )

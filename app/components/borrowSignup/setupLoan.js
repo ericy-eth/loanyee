@@ -4,6 +4,7 @@ import USDC from "../cryptologos/usdc.js" //USDC svg component
 import ETH from "../cryptologos/eth.js" //ETH svg component
 import DAI from "../cryptologos/dai.js"
 import USDT from "../cryptologos/usdt.js"
+import { ethers } from "ethers"
 
 
 export default function SetupLoan({setFunctions, formState, APY, creditScore}){
@@ -46,8 +47,17 @@ export default function SetupLoan({setFunctions, formState, APY, creditScore}){
 
 
             <h1 class="flex  mt-8 font-bold text-2xl">
-            Setup Loan
+            Setup Loan 🔧
             </h1>
+            <div class="flex flex-row mt-5 bg-slate-200 rounded-md p-3  gap-1">
+            💡
+                <h2 class="ml-3 text-gray-500 text-md font-normal">
+                     Current Interest Rate: <b>{APY*100}%</b>
+                </h2>
+                
+                
+            </div>
+            
         <div class="bt-5 flex flex-col gap-5 mt-5">
             <div class="flex flex-col gap-2">
                 <h2 class="text-lg font-semibold">
@@ -127,15 +137,19 @@ export default function SetupLoan({setFunctions, formState, APY, creditScore}){
                 
 
             </div>
-
-            <div class="flex flex-col bg-slate-200 rounded-md p-3  gap-2">
+            {formState.formIsEmpty && 
+               <div class="flex flex-row items-center mt-5 bg-slate-200 rounded-md p-3  gap-1">
+                <div class="w-4 h-4 rounded-full bg-red-400 ml-3"/>
                 <h2 class="ml-3 text-gray-500 text-md font-normal">
-                    Current Interest Rate: <b>{APY*100}%</b>
+                    Form Cannot Be Empty
                 </h2>
-                <h2 class="ml-3 text-gray-500 text-md font-normal">
-                    Your Credit Score: <b>{creditScore}</b>
-                </h2>
+                
+                
             </div>
+
+            }
+         
+            
             
 
             

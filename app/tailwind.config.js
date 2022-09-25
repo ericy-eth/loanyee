@@ -8,6 +8,9 @@ module.exports = {
       gridTemplateColumns:{
         '13': 'repeat(13, minmax(0, 1fr))',
 
+      },
+      colors:{
+        'light-grey': '#F8F8F8'
       }
     },
   },
