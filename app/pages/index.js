@@ -70,39 +70,39 @@ export default function Home() {
   }
  
   return (
-    <div class="bg-white">
+    <div className="bg-white">
 
       {/* Banner */}
-      <div class="container mt-12 mx-auto">
-        <Image class="w-12" src={banner}></Image>
+      <div className="container mt-12 mx-auto">
+        <Image className="w-12" src={banner}></Image>
       </div>
 
       {/* Sorting */}
-      {/* <div class="container mt-12 mx-auto grid grid-cols-12">
+      {/* <div className="container mt-12 mx-auto grid grid-cols-12">
       
-         <div class="bg-neutral-100 rounded-full px-5 py-1">
+         <div className="bg-neutral-100 rounded-full px-5 py-1">
           <input style={{outline:"none"}} ></input>
          </div>
       </div> */}
 
       {/* Categories */}
-      <div class="container mt-10 mx-auto py-5 grid grid-cols-9 justify-between text-xl text-stone-500 items-center">
-        <div class="col-span-2">Borrower</div>
-        <div class="col-span-2">Loan Value</div>
-        <div class="col-span-2">Duration</div>
-        {/* <div class="col-span-2">Credit Score</div> */}
-        {/* <div class="col-span-2">Salary History</div> */}
-        <div class="col-span-2">Interest Rate</div>
-        <div class="col-span-1">Status</div>
+      <div className="container mt-10 mx-auto py-5 grid grid-cols-9 justify-between text-xl text-stone-500 items-center">
+        <div className="col-span-2">Borrower</div>
+        <div className="col-span-2">Loan Value</div>
+        <div className="col-span-2">Duration</div>
+        {/* <div className="col-span-2">Credit Score</div> */}
+        {/* <div className="col-span-2">Salary History</div> */}
+        <div className="col-span-2">Interest Rate</div>
+        <div className="col-span-1">Status</div>
       </div>
 
       {/* Borrowers List */}
       <div
         style={{ maxHeight: "67rem" }}
-        class="container mx-auto"
+        className="container mx-auto"
       >
         {loanData.map((borrower, index) => {
-          return <Link   href={{pathname: "/borrowerDetail", query: borrower}}>
+          return <Link key={5}  href={{pathname: "/borrowerDetail", query: borrower}}>
           <a >
           <BorrowerSection index={index} data={borrower} />
 
