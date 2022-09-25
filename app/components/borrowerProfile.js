@@ -26,15 +26,15 @@ export default function BorrowerProfile({index,data}){
 
 
     return(
-         <div class={borrowerProfileCSS}>
+         <div className={borrowerProfileCSS}>
             {/* Account profile and address */}
-            <div class="flex gap-5 col-span-2  items-center ">
+            <div className="flex gap-5 col-span-2  items-center ">
             <Jazzicon diameter={50} seed={jsNumberForAddress(data.borrowerAddress)} />
                 {shortenAddress(data.borrowerAddress)}
             </div>
 
             {/* Currency and Amount */}
-            <div class="flex gap-2 col-span-2 items-center">
+            <div className="flex gap-2 col-span-2 items-center">
                 {data.currency=="USDC" && 
                 <USDC width="2rem"></USDC>}
                 {data.currency=="ETH" &&
@@ -44,16 +44,16 @@ export default function BorrowerProfile({index,data}){
                 {data.value} {data.currency}
             </div>
             {/* Loan Maturity, Credit Score, Salary History, and APR */}
-            <div class="col-span-2">{data.maturity}</div>
-            <div class="col-span-2">{data.creditScore}</div>
-            <div class="col-span-2">{data.salaryHistory}</div>
-            <div class="col-span-2">{data.APR}</div>
+            <div className="col-span-2">{data.maturity}</div>
+            <div className="col-span-2">{data.creditScore}</div>
+            <div className="col-span-2">{data.salaryHistory}</div>
+            <div className="col-span-2">{data.APR}</div>
 
             {/* Status Indicator */}
-            <div class="flex gap-2 items-center col-span-1" >
+            <div className="flex gap-2 items-center col-span-1" >
 
-                {data.status == "Active" && <div class="w-5 h-5 rounded-full bg-green-400"/>}
-                {data.status == "Inactive" && <div class="w-5 h-5 rounded-full bg-red-400"/>}
+                {data.status == "Active" && <div className="w-5 h-5 rounded-full bg-green-400"/>}
+                {data.status == "Inactive" && <div className="w-5 h-5 rounded-full bg-red-400"/>}
                 {data.status}
             </div>
         </div>

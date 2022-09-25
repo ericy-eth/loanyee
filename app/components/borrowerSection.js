@@ -24,15 +24,15 @@ export default function BorrowerSection({index,data}){
 
     return(
         
-        <div class={borrowerProfileCSS}>
+        <div className={borrowerProfileCSS}>
             {/* Account profile and address */}
-            <div class="flex gap-5 col-span-2  items-center ">
+            <div className="flex gap-5 col-span-2  items-center ">
             <Jazzicon diameter={50} seed={jsNumberForAddress(data.borrower)} />
                 {shortenAddress(data.borrower)}
             </div>
 
             {/* Currency and Amount */}
-            <div class="flex gap-2 col-span-2 items-center">
+            <div className="flex gap-2 col-span-2 items-center">
                 {data.currency=="USDC" && 
                 <USDC width="2rem"></USDC>}
                 {data.currency=="ETH" &&
@@ -42,16 +42,16 @@ export default function BorrowerSection({index,data}){
                 {data.borrowAmount/1000000000000000000} DAI
             </div>
             {/* Loan Maturity, Credit Score, Salary History, and APR */}
-            <div class="col-span-2">{data.paybackMonths} months</div>
-            {/* <div class="col-span-2">{data.creditScore}</div>
-            <div class="col-span-2">{data.salaryHistory}</div> */}
-            <div class="col-span-2">{data.interestRate}%</div>
+            <div className="col-span-2">{data.paybackMonths} months</div>
+            {/* <div className="col-span-2">{data.creditScore}</div>
+            <div className="col-span-2">{data.salaryHistory}</div> */}
+            <div className="col-span-2">{data.interestRate}%</div>
 
             {/* Status Indicator */}
-            <div class="flex gap-2 items-center col-span-1" >
+            <div className="flex gap-2 items-center col-span-1" >
 
-                <div class="w-5 h-5 rounded-full bg-green-400"/> Active
-                {/* {data.status == "Inactive" && <div class="w-5 h-5 rounded-full bg-red-400"/>}
+                <div className="w-5 h-5 rounded-full bg-green-400"/> Active
+                {/* {data.status == "Inactive" && <div className="w-5 h-5 rounded-full bg-red-400"/>}
                 {data.status} */}
             </div>
         </div>
