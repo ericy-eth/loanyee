@@ -1,12 +1,15 @@
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon' //Randomly generated profiles
 import Redirect from '../components/utilityLogos/redirect';
+// const { Framework } = require("@superfluid-finance/sdk-core")
 
 import Link from 'next/link';
 
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/useContext";
 import { useRouter } from 'next/router'
-import { useContractRead, useContractWrite, usePrepareContractWrite, useAccount } from 'wagmi'
+import { useContractRead, useContractWrite, usePrepareContractWrite, useAccount, useSigner } from 'wagmi'
+
+
 
 
 
@@ -19,7 +22,7 @@ import DAI from '../components/cryptologos/dai';
 import loanFactoryABI from "../data/contractABI/LoanFactory.json"
 // import employmentLoanABI from "../data/contractABI/EmploymentLoan.json"
 import { writeContract } from '@wagmi/core';
-import erc20ABI from "../data/contractABI/erc20TokenABI.json"
+// const erc20ABI =[{"stateMutability":"payable","type":"fallback"},{"inputs":[{"internalType":"address","name":"initialAddress","type":"address"}],"name":"initializeProxy","outputs":[],"stateMutability":"nonpayable","type":"function"},{"stateMutability":"payable","type":"receive"}]
 
 
 //Helper Functions
@@ -530,8 +533,13 @@ const employmentLoanABI = [
   }
 ]
 
+const erc20ABI =  [{"inputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"mint","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"}]
 
 export default function BorrowerDetail() {
+
+  // const { data: signer, isError, isLoading } = useSigner()
+
+// const {data:lenderSigner} = signer()
 
   function shortenAddress(str){
     return str.substring(0, 5) + "..." + str.substring(str.length - 3);
@@ -564,44 +572,44 @@ export default function BorrowerDetail() {
   //get borrow amount
   const {data: borrowAmount} = useContractRead({
     addressOrName: loanContractAddress,
-    contractInterface: loanFactoryABI,
+    contractInterface: employmentLoanABI,
     functionName: 'borrowAmount',
     onSuccess(data){
-      console.log("Borrow amount is ", data);
+      console.log("Borrow amount is ", borrowerData.borrowAmount);
     }
   })
 
-
   //Get DAI Token contract for lender to call approve()
   const { config: approveERC20Config } = usePrepareContractWrite({
-    addressOrName: "0x88271d333C72e51516B67f5567c728E702b3eeE8",
+    addressOrName: "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00",
     contractInterface: erc20ABI,
     functionName: 'approve',
-    args:[loanContractAddress, lenderAddress ]
+    args:[loanContractAddress, borrowAmount+"000000000000000000"]
   })
   
   const {write:approveERC20, data, isSuccess} = useContractWrite(approveERC20Config)
 
   //Prepare Lend Function
-  const { config: lendToBorrowerConfig } = usePrepareContractWrite({
-    addressOrName: "0x224A13dc8035706B594297c561806Bf191477977",
+  const { config: lendToBorrowerConfig, error } = usePrepareContractWrite({
+    addressOrName: "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00",
     contractInterface: employmentLoanABI,
-    functionName: 'lend',
-    args:[]
+    functionName: 'lend'
   })
 
-  const {write: lendToBorrower} = useContractWrite(lendToBorrowerConfig)
+  console.log("logging error ", error );
 
+  const {write, data:lendData, isSuccess:lendSuccess} = useContractWrite(lendToBorrowerConfig)
+  console.log("logging errors",lendData, lendSuccess);
 
   //Link for etherscan
   const etherscanBorrowerAddress = "https://etherscan.io/address/" + borrowerData.borrower
-  const etherscanContractAddress = "https://etherscan.io/address/" + loanContractAddress
+  const etherscanContractAddress = "https://etherscan.io/address/0xfaF70914062B12949a835837219eE526b921B7F4"
 
   function approve(){
     approveERC20()
   }
   function lend(){
-    lendToBorrower()
+    write()
   }
 
  
@@ -616,8 +624,8 @@ export default function BorrowerDetail() {
         {/* Title and Borrower */}
             <div className="flex justify-between">
                 <h1 className="font-semibold text-2xl">Borrower Detail</h1>
-                <button onClick={approve} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white py-2 px-5 rounded-full text-center">Approve</button>
-                <button onClick={lend} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white py-2 px-5 rounded-full text-center">Lend to this Borrower</button>
+                <button onClick={approve} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white py-2 px-5 rounded-full text-center">Lend to this Borrower</button>
+                {/* <button onClick={lend} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white py-2 px-5 rounded-full text-center">Lend to this Borrower</button> */}
 
             </div>
 
@@ -665,14 +673,14 @@ export default function BorrowerDetail() {
                         <DAI width={"2rem"}></DAI> <p className="text-xl font-medium">{
                         borrowerData.borrowAmount/100000000000000000000+
                         ((((borrowerData.borrowAmount)*
-                        (borrowerData.interestRate*(borrowerData.paybackMonths/12)))/100000000000000000000).toFixed(2))}</p>
+                        (borrowerData.interestRate*(borrowerData.paybackMonths/12)))/1000000000000000000000).toFixed(2))}</p>
                         </div>
                     </div>
              
                     <div className="flex flex-col col-span-1">
                         <p className="text-sm text-gray-500">Contract Address</p>
                         <div className="flex gap-2 items-center">
-                            <p className="text-xl font-medium">{shortenAddress(loanContractAddress)}</p>
+                            <p className="text-xl font-medium">{shortenAddress("0xfaF70914062B12949a835837219eE526b921B7F4")}</p>
                             <a target="_blank" rel="noreferrer" href={etherscanContractAddress}>
                                 <Redirect width="1.2rem"/>
                             </a>

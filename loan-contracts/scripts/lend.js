@@ -20,7 +20,7 @@ async function main() {
     })
 
     //most recent loan address
-    const loanAddress = "0x38648A4713bCe5981241d6C6603dD770d9788692" //NOTE - must be updated to reflect actual loan address
+    const loanAddress = "0xA989712F5155FAf845A2D52179DAd5ba42Fd35D7" //NOTE - must be updated to reflect actual loan address
 
     const lender = sf.createSigner({
         privateKey: process.env.LENDER_PRIVATE_KEY,

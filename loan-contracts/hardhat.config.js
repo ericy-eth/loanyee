@@ -9,6 +9,14 @@ module.exports = {
     goerli:{
       url: process.env.GOERLI_URL,
       accounts:[process.env.EMPLOYER_PRIVATE_KEY]
+    },
+    optimism:{
+      url: process.env.OPTIMISM_URL,
+      accounts:[process.env.EMPLOYER_PRIVATE_KEY]
+    },
+    polygon:{
+      url: process.env.POLYGON_URL,
+      accounts:[process.env.EMPLOYER_PRIVATE_KEY]
     }
   }
 };

@@ -16,7 +16,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { list } from "postcss";
 import ABI from "../data/contractABI/LoanFactory.json"
 
-import {usePrepareContractWrite, useContractWrite, useAccount} from "wagmi"
+import {usePrepareContractWrite, useContractWrite, useAccount, useSigner} from "wagmi"
 
 let loanABI =  ABI
 
@@ -28,9 +28,8 @@ export default function Borrow(){
 
     const [currentItem, setCurrentItem] = useState(0)
 
-    const {user, setUser} = useContext(UserContext)
-
-    const [isWalletConnected, setWalletConnected] = useState()
+    const {data:signer} = useSigner()
+    let loanFactory = new ethers.Contract("0xFB26b9144f13e7D2485C4df2cCbb977660DC01fc", loanABI, signer)
 
 
     // Form Data
@@ -64,7 +63,7 @@ export default function Borrow(){
         formIsEmpty: formIsEmpty
     }
 
-    const APY = 0.10
+    const APY = 0.08
 
     //List items
     const listItems = [<SetupLoan key={1} setFunctions={setFunctions} formState={formState} APY={APY} creditScore={3}/>,<EmployerApproval key={2} />, <Completed key={3} formState={formState} APY={APY}/>]
@@ -98,7 +97,7 @@ export default function Borrow(){
         addressOrName:  "0xFB26b9144f13e7D2485C4df2cCbb977660DC01fc",
         contractInterface: loanABI,
         functionName: "createNewLoan",
-        args:[borrowAmount+"000000000000000000", 10, loanDuration, employerAddress, userAddress, "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9"],
+        args:[borrowAmount+"000000000000000000", 8, loanDuration, employerAddress, userAddress, "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9"],
         onSuccess(data) {
             console.log('Success', data)
         },
@@ -106,11 +105,16 @@ export default function Borrow(){
     const {write:createLoan, isSuccess } = useContractWrite(config)
 
     
-    function submitForm(){
-        console.log("Borrow amount at this stage " + borrowAmount);
-        createLoan()
-        nextPage()
+    // function submitForm(){
+    //     console.log("Borrow amount at this stage " + borrowAmount);
+    //     createLoan()
+    //     nextPage()
 
+    // }
+
+    async function submitForm(){
+        await loanFactory.createNewLoan(ethers.utils.parseEther(borrowAmount), 8, loanDuration, employerAddress, userAddress,"0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9")
+        nextPage()
     }
     return(
         <>

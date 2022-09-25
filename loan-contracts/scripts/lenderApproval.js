@@ -1,5 +1,5 @@
 //most recent loan address
-const loanAddress = "0x274149aBc1c8Cc942EFd710e6D8142101efFE608" //NOTE - update w actual loan address
+const loanAddress = "0xfaF70914062B12949a835837219eE526b921B7F4" //NOTE - update w actual loan address
 const ethers = require("ethers")
 const { Framework } = require("@superfluid-finance/sdk-core")
 const LoanContract = require("../artifacts/contracts/LoanFactory.sol/EmploymentLoan.json")

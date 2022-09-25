@@ -16,6 +16,7 @@
     "@mui/material": "^5.10.4",
     "@rainbow-me/rainbowkit": "^0.6.1",
     "@spruceid/siwe-parser": "^2.0.0",
+    "@superfluid-finance/sdk-core": "^0.5.6",
     "@svgr/webpack": "^6.3.1",
     "@tableland/sdk": "^3.1.2",
     "axios": "^0.27.2",
