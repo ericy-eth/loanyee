@@ -1,0 +1,975 @@
+.CardDiv {padding: 120px 290px 160px 290px;
+}
+@font-face {
+  font-family: 'NeueMontreal';
+  src: local('NeueMontreal'), url(../public/Neue_Montreal/NeueMontreal-Regular.otf) format('opentype');
+}
+body, html {
+  font-family: NeueMontreal;
+}
+.container {
+  width: max-content;
+  color: rgba(118, 118, 118, 1);
+}
+.BoxHeight .Status {
+  color: 
+  rgba(36, 208, 85, 1);
+}
+.card {
+  border-radius: 30px;
+  box-shadow: 0px 0px 17px -15px;
+}
+
+.TextFieldOne {
+  width: 530px;
+  margin-left: 30px;
+  border: whitesmoke;
+  border-radius: 40px;
+  padding: 12px;
+  background: whitesmoke;
+}
+
+.TextFieldOne .MuiInputBase-root {
+  border-radius: 2rem;
+  background-color: whitesmoke;
+  font-size: 1.3rem;
+}
+
+.TextFieldOne .MuiInputBase-input {
+  color: #767676;
+  font-size: 1.3rem;
+  margin-left: 10px;
+}
+
+.TextFieldOne.MuiSvgIcon-root {
+  font-size: 2rem !important;
+  fill: #767676 !important;
+  width: 1rem !important;
+  height: 1rem !important;
+  margin-left: 10px;
+}
+
+.TextFieldOne .notranslate {
+  margin-left: 7px;
+}
+
+.TextFieldTwo .MuiFormLabel-root {
+  color: #767676;
+  font-size: 1.23rem;
+}
+
+.TextFieldTwo .MuiInputBase-root:hover {
+  border-color: #767676;
+}
+
+.TextFieldThree .MuiFormLabel-root {
+  color: #767676;
+  font-size: 1.23rem;
+}
+
+.TextFieldTwo .MuiInputBase-root {
+  border-radius: 10px;
+}
+
+.TextFieldThree .MuiInputBase-root {
+  border-radius: 10px;
+}
+
+
+
+.TextFieldTwo {
+  margin-left: 33%;
+  width: 156px;
+}
+
+.TextFieldThree {
+  margin-left: 1%;
+  width: 156px
+}
+
+.cardItem {
+  Height: 37rem;
+  Width: 95%
+}
+
+.BoxHeight {
+  padding: 12px;
+  margin-top: -4px;
+}
+.img_section{
+ background-image: url("../src/image/MicrosoftTeams-image.png");
+ width: 100%;
+ height: 626px;
+  /* background-size: cover; */
+  background-repeat: no-repeat;
+}
+.img_sectionsec {  
+  /* background-image: url("../src/image/mountImg.svg");
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat; */
+  background: url("../src/image/mountImg.svg");
+    background-repeat: no-repeat;
+    background-position: top;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    /* background-size: contain; */
+    background-size: 3000px 1400px;
+}
+.img_section2{
+  background-image: url("../src/image/Background.png");
+  /* width: 100%; */
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-left: 40%;
+  margin-top: -2%;
+  position: unset;
+}
+.footerPara{
+  color:'#f9a8d4'
+}
+
+.fontWight {
+  font-weight: 500;
+}
+.fontWightsec{
+  font-weight: 500;
+}
+
+.btnOne {
+  border: 1px solid;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 500;
+  border-radius: 35px;
+  font-size: 21px;
+}
+
+div.btnOne {
+  line-height: 5.6;
+}
+
+.btnTWo {
+  border: 1px solid;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 500;
+  border-radius: 35px;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.text-blackSpan span {
+  width: 242px !important;
+  height: 40px !important;
+}
+
+
+
+
+/* // Small devices (landscape phones, less than 768px) */
+
+
+/* // Medium devices (tablets, less than 992px) */
+/* start */
+
+/* @media screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+  
+} */
+
+@media screen and (max-device-width: 1280px) {
+  .img_section {
+    background-size: cover;
+    height: 500px;
+  }
+
+  /* this  */
+  .ecItem{
+    margin-left: 50x;
+  }
+  .BoxHeight .text-xl {
+    font-size: 1rem;
+    margin-left: -15px;
+  }
+
+  .text-xl {
+    margin-left: 5px;
+  }
+
+  .CardDiv .ml-5 {
+    margin-left: 0px;
+  }
+
+  .container .col-span-2 {
+    margin-left: 0%;
+  }
+
+  .BoxHeight .Value {
+    margin-left: 25px;
+  }
+
+  .BoxHeight .Maturity {
+    margin-left: 10px;
+  }
+
+  .BoxHeight .Credit {
+    margin-left: 20px;
+  }
+
+  .BoxHeight .APR {
+    margin-left: 2.2rem;
+  }
+
+  .BoxHeight .Status {
+    margin-left: 1rem;
+  }
+
+  .container .ml-24 {
+    margin-left: 40%;
+
+  }
+
+  .container .ml-12 {
+    margin-left: 15%;
+    min-width: 120px;
+  }
+
+  .overflow {
+    overflow: auto;
+  }
+
+  .BoxHeight {
+    padding: 2px;
+    margin-top: -4px;
+    margin-left: 28px;
+  }
+
+  /* to this  */
+  .TextFieldOne {
+    width: 440px;
+    margin-left: 30px;
+    padding: 10px;
+  }
+
+  .TextFieldTwo {
+    margin-left: .5%;
+  }
+
+  .font {
+    font-size: 50px;
+    font-weight: 500;
+  }
+
+  .BoxHeight .paper {
+    border-radius: 50px;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    background-color: #c71422;
+    height: 40px;
+    width: 40px;
+  }
+
+}
+
+/* 1024  */
+@media screen and (max-device-width: 1024px) {
+  .img_section {
+    background-size: cover;
+    height: 500px;
+  }
+
+  /* this  */
+  .BoxHeight .text-xl {
+    font-size: 1rem;
+    /* margin-left: -15px; */
+  }
+
+  .container .last {
+    margin-left: 10px;
+  }
+
+  .text-xl {
+    margin-left: 5px;
+  }
+
+  .CardDiv .ml-5 {
+    margin-left: -10px;
+  }
+
+  .container .one {
+    margin-left: 0%;
+  }
+
+  .container .slry {
+    margin-left: 2%;
+  }
+
+  .BoxHeight .Value {
+    margin-left: 25px;
+  }
+
+  .BoxHeight .Maturity {
+    margin-left: 4px;
+  }
+
+  .BoxHeight .Credit {
+    margin-left: 15px;
+  }
+
+  .BoxHeight .APR {
+    margin-left: 2.2rem;
+  }
+
+  .BoxHeight .Status {
+    margin-left: 1.8rem;
+  }
+
+  .container .ml-24 {
+    margin-left: 45%;
+
+  }
+
+  .container .ml-12 {
+    margin-left: 9%;
+  }
+
+  .overflow {
+    overflow-y: auto;
+  }
+
+  .BoxHeight {
+    padding: 2px;
+    margin-top: -4px;
+    margin-left: 28px;
+  }
+
+  /* to this  */
+  .TextFieldOne {
+    width: 440px;
+    margin-left: 26px;
+    padding: 10px;
+  }
+
+  .TextFieldTwo {
+    margin-left: 2%;
+    /* margin-top: 2%; */
+  }
+
+  .CardDiv {
+    padding: 100px;
+    margin-top: -35px;
+  }
+
+  .font {
+    font-size: 50px;
+    font-weight: 500;
+  }
+}
+
+/* 912 */
+@media screen and (max-device-width:912px) {
+  .img_section {
+    background-size: cover;
+    height: 433px;
+  }
+
+
+  .TextFieldOne {
+    width: 292px;
+    margin-left: 20px;
+    padding: 2px;
+  }
+
+  .TextFieldTwo .MuiInputBase-root {
+    height: 40px;
+  }
+
+  .TextFieldThree .MuiInputBase-root {
+    height: 40px;
+  }
+
+  .TextFieldTwo .MuiFormLabel-root {
+    color: #767676;
+    font-size: 1.1rem;
+    margin-top: -7px;
+  }
+
+  .TextFieldThree .MuiFormLabel-root {
+    color: #767676;
+    font-size: 1.1rem;
+    margin-top: -7px;
+  }
+
+  .TextFieldTwo {
+    margin-left: 8%;
+  }
+
+  .TextFieldThree {
+    margin-left: 1%;
+  }
+
+  .font {
+    font-size: 43px;
+  }
+}
+
+/* 820 */
+@media screen and (max-device-width:820px) {
+  .btnOne {
+    font-size: 17px;
+  }
+
+  .CardDiv {
+    padding: 50px;
+  }
+
+  .btnTWo {
+    font-size: 17px;
+  }
+
+  .TextFieldOne {
+    width: 292px;
+    margin-left: 20px;
+    padding: 2px;
+  }
+
+  .TextFieldTwo {
+    margin-left: 10%;
+  }
+
+  .TextFieldThree {
+    margin-left: 1%;
+  }
+}
+
+/* 768 */
+@media screen and (max-device-width:768px) {
+  .img_section {
+    background-size: cover;
+    height: 480px;
+  }
+
+  .font {
+    font-size: 43px;
+  }
+
+  .btnOne {
+    border: 1px solid;
+    padding-left: 28px;
+    padding-right: 16px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    border-radius: 39px;
+    font-size: 19px;
+  }
+
+  .btnTWo {
+    border: 1px solid;
+    padding-left: 28px;
+    padding-right: 16px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    border-radius: 39px;
+    font-size: 19px;
+  }
+
+  .TextFieldTwo {
+    margin-left: 5%;
+    /* margin-top: 2%; */
+  }
+
+
+  .TextFieldOne {
+    width: 292px;
+    margin-left: 15px;
+    padding: 2px;
+  }
+
+}
+
+/* 540 */
+@media screen and (max-device-width:540px) {
+  .img_section {
+    background-size: cover;
+    height: 450px;
+  }
+ 
+
+  .font {
+    font-size: 25px;
+  }
+  /* this is start */
+    /* this  */
+    .BoxHeight .FristItem {
+      border-radius: 50px;
+      display: inline-block;
+      margin: 0;  
+      overflow: hidden;
+      padding: 0px;
+      background-color: #c71422;
+      height: 35px;
+      width: 35px;
+    }
+    .BoxHeight {
+      margin-top: -10px;
+    } 
+    .fontWight{
+      min-width:95px;
+      margin-left: 43px;
+    }
+    .BoxHeight .text-xl {
+      font-size: 1rem;
+    }
+  
+    .container .last {
+      margin-left: 10px;
+    }
+  
+    .container .vlue {
+      margin-left: 100%;
+    }
+  
+    /* .text-xl {
+      margin-left: 5px;
+    } */
+  
+    
+  
+    .container .col-span-2 {
+      margin-left: 0%;
+    }
+  
+    .BoxHeight .Value {
+      margin-left: 25px;
+    }
+  
+    .BoxHeight .Maturity {
+      margin-left: 80px;
+    }
+  
+    .BoxHeight .Credit {
+      margin-left: 140px;
+    }
+  
+    .BoxHeight .APR {
+      margin-left: 363%
+    }
+  
+    .BoxHeight .Status {
+      margin-left: 14rem;
+    }
+  
+    .container .mturty {
+      margin-left: 125%;
+      font-size: 15px;
+  
+    }
+  
+    .container .crdt {
+      margin-left: 200%;
+      font-size: 15px;
+      min-width: 86px;
+    }
+  
+    .container .brwsr {
+      font-size: 15px;
+    }
+  
+    .container .vlue {
+      font-size: 15px;
+    }
+  
+    .container .slry {
+      margin-left: 275%;
+      font-size: 15px;
+      min-width: 100px;
+    }
+  
+    .container .ap {
+      margin-left: 390%;
+      font-size: 15px;
+    }
+  
+    .container .stts {
+      margin-left: 800%;
+      font-size: 15px;
+    }
+  
+    .BoxHeight {
+      padding: 2px;
+      margin-top: -4px;
+      margin-left: 28px;
+    }
+  
+    /* to this  */
+  /* this is end  */
+  .btnOne {
+    border: 1px solid;
+    padding-left: 28px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    border-radius: 39px;
+    font-size: 11px;
+  }
+
+  .btnTWo {
+    border: 1px solid;
+    padding-left: 28px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    border-radius: 39px;
+    font-size: 11px;
+  }
+
+  .TextFieldOne {
+    width: 416px;
+    margin-left: 10px;
+    padding: 2px;
+  }
+
+  .TextFieldTwo .MuiInputBase-root {
+    height: 50px;
+  }
+
+  .TextFieldThree .MuiInputBase-root {
+    height: 50px;
+  }
+
+  .TextFieldTwo .MuiFormLabel-root {
+    color: #767676;
+    font-size: 1.1rem;
+    margin-top: -3px;
+  }
+
+  .TextFieldThree .MuiFormLabel-root {
+    color: #767676;
+    font-size: 1.1rem;
+    margin-top: -3px;
+  }
+
+  .TextFieldTwo {
+    margin-left: 12%;
+    margin-top: 2%;
+  }
+
+  .TextFieldThree {
+    margin-top: 2%;
+  }
+
+  .CardDiv {
+    margin-top: -50px
+  }
+}
+
+
+/* 414 */
+@media screen and (max-device-width:414px) {
+  .img_section {
+    background-size: cover;
+    height: 470px;
+    width: 130%;
+  }
+
+  .btnOne {
+    border: 1px solid;
+    padding-left: 28px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    border-radius: 39px;
+    font-size: 11px;
+  }
+
+  .btnTWo {
+    border: 1px solid;
+    padding-left: 28px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    border-radius: 39px;
+    font-size: 11px;
+  }
+
+  .TextFieldOne {
+    width: 416px;
+    margin-left: 10px;
+  }
+
+  .TextFieldTwo {
+    margin-left: 50px;
+    margin-top: 3%;
+  }
+
+  .TextFieldThree {
+    margin-top: 3%;
+  }
+
+  .CardDiv {
+    margin-top: 0px;
+  }
+
+  .font {
+    font-size: 25px;
+  }
+}
+
+/* 412 */
+@media screen and (max-device-width:412px) {
+  .img_section {
+    background-size: cover;
+    height: 500px;
+    width: 130%;
+  }
+
+  /* this  */
+  
+
+  .container .last {
+    margin-left: 10px;
+  }
+
+  .container .vlue {
+    margin-left: 100%;
+  }
+
+
+
+  .BoxHeight .Value {
+    margin-left: 25px;
+  }
+
+  .BoxHeight .Maturity {
+    margin-left: 80px;
+  }
+
+  .BoxHeight .Credit {
+    margin-left: 140px;
+  }
+
+  .BoxHeight .APR {
+    margin-left: 363%
+  }
+
+  .BoxHeight .Status {
+    margin-left: 14rem;
+  }
+
+  .container .mturty {
+    margin-left: 125%;
+    font-size: 15px;
+
+  }
+
+  .container .crdt {
+    margin-left: 200%;
+    font-size: 15px;
+    min-width: 86px;
+  }
+
+  .container .brwsr {
+    font-size: 15px;
+  }
+
+  .container .vlue {
+    font-size: 15px;
+  }
+
+  .container .slry {
+    margin-left: 275%;
+    font-size: 15px;
+    min-width: 100px;
+  }
+
+  .container .ap {
+    margin-left: 390%;
+    font-size: 15px;
+  }
+
+  .container .stts {
+    margin-left: 800%;
+    font-size: 15px;
+  }
+
+  .BoxHeight {
+    padding: 2px;
+    margin-top: -4px;
+    margin-left: 28px;
+  }
+
+  /* to this  */
+  .btnOne {
+    border: 1px solid;
+    padding-left: 28px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    border-radius: 39px;
+    font-size: 11px;
+  }
+
+  .btnTWo {
+    border: 1px solid;
+    padding-left: 28px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 500;
+    border-radius: 39px;
+    font-size: 11px;
+  }
+
+  .TextFieldOne {
+    width: 416px;
+    margin-left: 8px;
+    padding: 2px;
+  }
+
+  .TextFieldTwo .MuiInputBase-root {
+    height: 45px;
+  }
+
+  .TextFieldTwo {
+    margin-left: 50px;
+    margin-top: 3%;
+  }
+
+  .TextFieldTwo .MuiFormLabel-root {
+    color: #767676;
+    font-size: 1.1rem;
+    margin-top: -5px;
+  }
+
+  .TextFieldThree {
+    margin-top: 3%;
+  }
+
+  .TextFieldThree .MuiInputBase-root {
+    height: 45px;
+  }
+
+  .TextFieldThree .MuiFormLabel-root {
+    color: #767676;
+    font-size: 1.1rem;
+    margin-top: -5px;
+  }
+
+  .CardDiv {
+    margin-top: 0px;
+  }
+
+  .font {
+    font-size: 25px;
+  }
+
+  .CardDiv .MuiPaper-root {
+    margin-left: 8px;
+  }
+}
+
+/* 390 */
+@media screen and (max-device-width:390px) {
+  .CardDiv {
+    padding: 40px;
+  }
+}
+
+/* 393 */
+@media screen and (max-device-width:393px) {
+  .CardDiv {
+    margin-top: 0px;
+    padding: 42px;
+  }
+
+  .TextFieldOne {
+    width: 405px;
+    margin-left: 8px;
+    padding: 2px;
+  }
+
+  .img_section {
+    background-size: cover;
+    height: 460px;
+    width: 130%;
+  }
+}
+
+/* 375 */
+@media screen and (max-device-width:375px) {
+  .CardDiv {
+    margin-top: 0px;
+    padding: 30px;
+
+  }
+}
+
+/* 360 */
+@media screen and (max-device-width:360px) {
+  .CardDiv {
+    padding: 25px;
+  }
+
+  .img_section {
+    height: 462px;
+  }
+
+  .TextFieldOne {
+    margin-left: 1px;
+    width: 400px;
+    margin-left: 5px;
+  }
+}
+
+/* 280 */
+@media screen and (max-device-width:280px) {
+  .img_section {
+    background-size: cover;
+    height: 485px;
+    width: 191%;
+  }
+
+  .CardDiv {
+    padding: 46px;
+    margin-left: 9px;
+  }
+
+  .font {
+    font-size: 28px;
+  }
+
+  .TextFieldOne {
+    margin-left: 6px;
+  }
+
+  .TextFieldTwo {
+    margin-left: 50px;
+    margin-top: 3%;
+  }
+
+  .btnOne,
+  .btnTWo {
+    border: 1px solid;
+    padding-left: 23px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 2px;
+    font-weight: 500;
+    border-radius: 59px;
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,118 @@
+.Card{
+    background-color: #030C24;
+    width: 100%;
+}
+
+.circle{
+    margin-left: 15px !important;
+    margin-top: 90px;
+}
+
+.dollar{
+    margin-left: 570px !important;
+    margin-top: -800px;
+}
+
+.box{
+    margin-left: 1100px !important;
+    margin-top: -260px;
+}
+
+.launcha{
+    margin-left: 1100px;
+    padding: 10px 10px 20px 40px;
+    height:48px;
+    margin-top: -75px !important;
+    background: linear-gradient(to bottom, #592ee1,#b836d9);
+    border-radius: 30px;
+    box-shadow: 0px -1px 0px 0px white;
+    text-align: center !important;
+    align-items: center;
+    justify-content: center;
+}
+.launcha2{
+    float: left;
+    margin-left: -68px;
+    padding: 10px 10px 20px 40px;
+    height: 48px;
+    margin-top: 45px !important;
+    background: linear-gradient(to bottom, #592ee1,#b836d9);
+    border-radius: 30px;
+    box-shadow: 0px -1px 0px 0px white;
+    text-align: center !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+
+.logo{
+    margin-left: -156px;
+    margin-top: -75px;
+}
+
+.chain{
+    margin-top:-92px !important;
+    margin-left:524px;
+}
+
+.how{
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.mid{
+    height: 250%;
+    margin-top: -200px;
+    /* width: 250%; */
+}
+
+.image{
+    margin-top:40px;
+    padding-left: 120px;
+    background: inherit;
+}
+.image3{
+    margin-top:40px;
+    padding-left: 120px;
+    background: inherit;
+    margin-left: -3%;
+}
+
+@font-face {
+    font-family: 'NeueMontreal';
+    src: local('NeueMontreal'), url(../public/Neue_Montreal/NeueMontreal-Regular.otf) format('opentype');
+  }
+  body, html {
+    font-family: NeueMontreal;
+}
+
+/* media query */
+
+/* 1280 screen  start*/
+
+/* @media screen and (max-width:1280px) {
+    .launcha{
+        margin-left: 113%;
+    }
+    .Uncollaterized {
+        margin-left: -8%;
+    font-size: 78px;
+    color: white;
+    margin-top: 92px;
+    }
+    .basedOn{
+        font-size: 78px;
+    margin-left: -7.9%;
+    }
+    .chain{
+        margin-left: 31%;
+        margin-top: -80px !important;
+    }
+} */
+
+/* 1280 screen  end*/
