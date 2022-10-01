@@ -23,14 +23,14 @@ export default function BorrowerProfile({index,data}){
 
 
     return(
-        <div  class={borrowerProfileCSS} >
+        <div  className={borrowerProfileCSS} >
             {/* Account profile and address */}
-            <div class="FristItem text-xl mt-5 ml-5 flex gap-2 col-span-2  items-center ">
-            <Jazzicon class="dismeterrr" diameter={40} seed={jsNumberForAddress(data.borrowerAddress)} />
+            <div className="FristItem text-xl mt-5 ml-5 flex gap-2 col-span-2  items-center ">
+            <Jazzicon className="dismeterrr" diameter={40} seed={jsNumberForAddress(data.borrowerAddress)} />
                <div className="fontWight"> {shortenAddress(data.borrowerAddress)} </div>
             </div>
             {/* Currency and Amount */}
-            <div class="secItem text-xl mt-5 ml-8 flex gap-2 col-span-2 items-center">             
+            <div className="secItem text-xl mt-5 ml-8 flex gap-2 col-span-2 items-center">             
                 {data.currency=="USDC" && 
                 <USDC width="1.6rem"></USDC>}
                 {data.currency=="ETH" &&
@@ -38,15 +38,15 @@ export default function BorrowerProfile({index,data}){
                 <div className="fontWight">{data.value} {data.currency}</div>
             </div>
             {/* Loan Maturity, Credit Score, Salary History, and APR */}
-          <div class="Value col-span-2 ml-10 mt-5  text-xl "><div className="fontWight">{data.maturity}</div> </div>
-            <div class="Maturity col-span-2  mt-5 ml-8 text-xl"><div className="fontWight">{data.creditScore}</div></div>
-            <div class="Credit col-span-2 ml-12  mt-5 text-xl"><div className="fontWight">{data.salaryHistory}</div></div>
-            <div class="APR col-span-2 ml-20 mt-5 text-xl"><div className="fontWight">{data.APR}</div></div>
+          <div className="Value col-span-2 ml-10 mt-5  text-xl "><div className="fontWight">{data.maturity}</div> </div>
+            <div className="Maturity col-span-2  mt-5 ml-8 text-xl"><div className="fontWight">{data.creditScore}</div></div>
+            <div className="Credit col-span-2 ml-12  mt-5 text-xl"><div className="fontWight">{data.salaryHistory}</div></div>
+            <div className="APR col-span-2 ml-20 mt-5 text-xl"><div className="fontWight">{data.APR}</div></div>
 
             {/* Status Indicator */}
-            <div class="Status text-lg ml-5 text-green-600 mt-5 flex gap-2 items-center col-span-1" >
-                {/* {data.status == "Active" && <div class="w-5 h-5 rounded-full bg-green-400"/>}
-                {data.status == "Inactive" && <div class="w-5 h-5 rounded-full bg-red-400"/>} */}
+            <div className="Status text-lg ml-5 text-green-600 mt-5 flex gap-2 items-center col-span-1" >
+                {/* {data.status == "Active" && <div className="w-5 h-5 rounded-full bg-green-400"/>}
+                {data.status == "Inactive" && <div className="w-5 h-5 rounded-full bg-red-400"/>} */}
                 <div className="fontWight">{data.status}</div>
             </div>
         </div>

@@ -130,14 +130,14 @@ export default function Home() {
 
   const dataSet = [profile1, profile2, profile3, profile1, profile4, profile5, profile1, profile2, profile4, profile4, profile2, profile3, profile5, profile2, profile5, profile1, profile2, profile3, profile1, profile2, profile3]
   return (
-    <div class="container-fluid">
+    <div className="container-fluid">
       {/* Header */}
       <div className="img_section"> 
-        <header class="img-fluid flex justify-between align-middle py-4 px-8 border-b-1  border-grey-200"  >
-          <div class="col text-5xl ml-4 w-100 font-bold py-2 px-5 text-black ">
+        <header className="img-fluid flex justify-between align-middle py-4 px-8 border-b-1  border-grey-200"  >
+          <div className="col text-5xl ml-4 w-100 font-bold py-2 px-5 text-black ">
             <Image src={LOGO} width={220} height={40}></Image>
           </div>
-          <div class="col mr-5 flex flex-row gap-3 items-center">
+          <div className="col mr-5 flex flex-row gap-3 items-center">
             <Link href="/borrow">
               <a className="btnOne">
                 {/* Become a Borrower */}
@@ -150,15 +150,15 @@ export default function Home() {
           </div>
         </header>
         {/* Banner */}
-        <div class="row container mt-12 mx-auto">
-          <div class="col text-7xl py-3 mt-10 px-5 text-black text-center"><div className="font">Borrow uncollateralized loan</div></div>
-          <div class=" col text-7xl text-black mb-5 ml-11 mb-9 text-center mr-10"><div className="font">with your on-chain income history</div></div>
+        <div className="row container mt-12 mx-auto">
+          <div className="col text-7xl py-3 mt-10 px-5 text-black text-center"><div className="font">Borrow uncollateralized loan</div></div>
+          <div className=" col text-7xl text-black mb-5 ml-11 mb-9 text-center mr-10"><div className="font">with your on-chain income history</div></div>
         </div>
         {/* Categories */}
         <div className="CardDiv">
           <Card className="card">
             <div>
-              <div class="container mt-10 mx-auto py-5  justify-between text-xl text-stone-500 items-center"> 
+              <div className="container mt-10 mx-auto py-5  justify-between text-xl text-stone-500 items-center"> 
                 {/* <FormControl > */}
                 <TextField className="TextFieldOne" id="input-with-icon-textfield"   variant="standard"
            
@@ -185,19 +185,19 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div class="overflow">
-            <div class="container font-bold ml-1 mt-5 mx-11 px-4 py-5 grid grid-cols-12 justify-between text-lg text-stone-500 items-center">
-              <div class="col-span-2 ml-5 brwsr">Borrower</div>
-              <div class="col-span- 2 ml-0 vlue ">Value</div>
-              <div class="col-span-2  ml-24  mturty">Maturity</div>
-              <div class="col-span-2 ml-12 crdt">Credit Score</div>
-              <div class="col-span-2 ml-12 slry">Salary History</div>
-              <div class="col-span-2 ml-12 last ap">APR</div>
-              <div class="col-span-1 stts -ml-9">Status</div>
+            <div className="overflow">
+            <div className="container font-bold ml-1 mt-5 mx-11 px-4 py-5 grid grid-cols-12 justify-between text-lg text-stone-500 items-center">
+              <div className="col-span-2 ml-5 brwsr">Borrower</div>
+              <div className="col-span- 2 ml-0 vlue ">Value</div>
+              <div className="col-span-2  ml-24  mturty">Maturity</div>
+              <div className="col-span-2 ml-12 crdt">Credit Score</div>
+              <div className="col-span-2 ml-12 slry">Salary History</div>
+              <div className="col-span-2 ml-12 last ap">APR</div>
+              <div className="col-span-1 stts -ml-9">Status</div>
             </div>
             <hr />
             {/* Borrowers List */}
-            <div className="cardItem" class="container mx-auto"> 
+            <div className="cardItem container mx-auto"> 
               {dataSet.map((borrower, index) => {
                 return (<>
                   <Box className="BoxHeight">
