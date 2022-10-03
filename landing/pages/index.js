@@ -104,7 +104,7 @@ export default function Home() {
         <div className="min-h-screen bg-cover">
           <div className="CardDiv">
             <div className="logo" >
-              <Image src={lonyeeLogo} width={200} height={40}></Image>
+              <Image src={lonyeeLogo} alt="lonyee logo" width={200} height={40}></Image>
             </div>
             <div className="col mr-5 flex flex-row gap-3 items-center ml-80">
               <div className="launcha">
@@ -117,12 +117,12 @@ export default function Home() {
           </Link> */}
             </div>
             <div className="scale-125 modal-title  row container mt-40 ml-24 text-white text-8xl ">
-              <span className="Uncollaterized">Uncollateralized lending</span><span className="ml-10"><Image src={line} width={160} height={70}></Image></span>
+              <span className="Uncollaterized">Uncollateralized lending</span><span className="ml-10"><Image src={line} alt="line" width={160} height={70}></Image></span>
             </div>
             <div className="scale-125 ml-24 text-8xl mt-2 row container  text-white">
               <span className="basedOn">against your</span>
               <div className="chain">
-                <Image src={On} width={650} height={110}></Image>
+                <Image src={On} alt="on-chain salary" width={650} height={110}></Image>
               </div>
             </div>
             <div className="row container -ml-16 mt-12 mx-auto text-white text-2xl">
@@ -142,7 +142,7 @@ export default function Home() {
               </div>
 
             <div className="mid">
-              <Image src={Mid}></Image>
+              <Image src={Mid} alt=""></Image>
             </div>
             <div className="how">
               <div>
@@ -162,7 +162,7 @@ export default function Home() {
             </div>
             <div className='grid grid-rows-3 grid-flow-col gap-4'>
               <div className="circle">
-                <Image src={Circle} width={80} height={80}></Image>
+                <Image src={Circle} alt="" width={80} height={80}></Image>
                 <div className="row-span-3 ... text-white text-xl mt-6">
                   Borrower reveals their credit score
                   <br />
@@ -173,7 +173,7 @@ export default function Home() {
               </div>
             </div>
             <div className="dollar">
-              <Image src={Dollar} width={80} height={80}></Image>
+              <Image src={Dollar} alt="" width={80} height={80}></Image>
               <div className="row-span-3 ... text-white text-xl mt-6">
                 Borrower asks employer to
                 <br />
@@ -187,7 +187,7 @@ export default function Home() {
               </div>
             </div>
             <div className="box">
-              <Image src={inBox} width={80} height={80}></Image>
+              <Image src={inBox} alt="" width={80} height={80}></Image>
               <div className="row-span-3 ... text-white text-xl text-normal mt-6">
                 Lender selects the borrower to
                 <br />
@@ -208,14 +208,14 @@ export default function Home() {
           <div>
             <header className="img-fluid flex justify-between align-middle py-4 px-8 border-b-1  border-grey-200">
               <div className=" text-8xl font-medium font-Neue Montreal mt-8 ml-52">Benefits</div>
-              <div className="mr-96 mt-20">  <Image src={Headline} width={1000} height={3}></Image> </div>
+              <div className="mr-96 mt-20">  <Image src={Headline} alt="" width={1000} height={3}></Image> </div>
             </header>
             {/* Banner */}
             {/* Categories */}
             <div className="ml-56 mt-10">
               <div className="flex ">
-                <div className=""> <Image src={ImgTwo} width={650} height={610}></Image></div>
-                <div className=" ml-40"><Image src={ImgOne} width={650} height={610}></Image></div>
+                <div className=""> <Image src={ImgTwo} alt="" width={650} height={610}></Image></div>
+                <div className=" ml-40"><Image src={ImgOne} alt="" width={650} height={610}></Image></div>
               </div>
             </div>
 
@@ -261,22 +261,22 @@ export default function Home() {
                   </div>
                   <div></div>
                   <div className="flex -ml-80">
-                    <div className="mr-12 mt-20"><Image src={ffour} width={200} height={40}></Image></div>
-                    <div className="mr-12 mt-20"> <Image src={fthree} width={200} height={40}></Image></div>
-                    <div className="mr-12  mt-20"><Image src={ftwo} width={200} height={40}></Image></div>
-                    <div className="mr-12 mt-20"> <Image src={fone} width={200} height={40}></Image></div>
+                    <div className="mr-12 mt-20"><Image src={ffour} alt="" width={200} height={40}></Image></div>
+                    <div className="mr-12 mt-20"> <Image src={fthree} alt="" width={200} height={40}></Image></div>
+                    <div className="mr-12  mt-20"><Image src={ftwo} alt="" width={200} height={40}></Image></div>
+                    <div className="mr-12 mt-20"> <Image src={fone} alt="" width={200} height={40}></Image></div>
                   </div>
                   <div className="flex -ml-96">
-                    <div className="image mr-12 ml-36 mt-10"><Image src={footersOne} width={150} height={70}></Image></div>
-                    <div className="image3 mt-10 ml-20"><Image src={footersThree} width={150} height={70}></Image></div>
+                    <div className="image mr-12 ml-36 mt-10"><Image src={footersOne} alt="" width={150} height={70}></Image></div>
+                    <div className="image3 mt-10 ml-20"><Image src={footersThree} alt="" width={150} height={70}></Image></div>
                     <div className="image mr-12 mt-10 ml-20" >
                       <div className="flex">
-                        <div className="mr-12 mt-2 -ml-10"> <Image src={footersfour} width={70}></Image> </div>
-                        <div className="mr-12 -ml-20"><Image src={footersTwo} width={150} height={70} class="-ml-10"></Image></div>
+                        <div className="mr-12 mt-2 -ml-10"> <Image src={footersfour} alt="" width={70}></Image> </div>
+                        <div className="mr-12 -ml-20"><Image src={footersTwo} alt="" width={150} height={70} class="-ml-10"></Image></div>
                       </div>
                     </div>
                     <div className="image2">
-                      <p className="ml-2 mt-10"><Image src={ESPL} width={150} height={70}></Image></p></div>
+                      <p className="ml-2 mt-10"><Image src={ESPL} alt="" width={150} height={70}></Image></p></div>
                   </div>
                 </div>
               </div>
