@@ -23,36 +23,36 @@ export default function Home() {
   const handleChange = () => {
     // setAge(event.target.value);
   };
-  useEffect(() => {
-    checkIfWalletConnected()
-  }, [])
-  async function checkIfWalletConnected() {
-    try {
-      const { ethereum } = window;
+  // useEffect(() => {
+  //   checkIfWalletConnected()
+  // }, [])
+  // async function checkIfWalletConnected() {
+  //   try {
+  //     const { ethereum } = window;
 
-      if (!ethereum) {
-        console.log("Make sure you have metamask!");
-        return;
-      } else {
-        console.log("We have the ethereum object", ethereum);
-      }
+  //     if (!ethereum) {
+  //       console.log("Make sure you have metamask!");
+  //       return;
+  //     } else {
+  //       console.log("We have the ethereum object", ethereum);
+  //     }
 
-      const accounts = await ethereum.request({ method: "eth_accounts" });
-      const provider = new ethers.providers.Web3Provider(ethereum);
+  //     const accounts = await ethereum.request({ method: "eth_accounts" });
+  //     const provider = new ethers.providers.Web3Provider(ethereum);
 
-      if (accounts.length !== 0) {
-        const account = accounts[0];
-        console.log("Found an authorized account:", account);
-        setWalletConnected(true)
-        setUser({ account: account })
+  //     if (accounts.length !== 0) {
+  //       const account = accounts[0];
+  //       console.log("Found an authorized account:", account);
+  //       setWalletConnected(true)
+  //       setUser({ account: account })
 
-      } else {
-        console.log("No authorized account found")
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //     } else {
+  //       console.log("No authorized account found")
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   async function connectWallet() {
     const { ethereum } = window
@@ -135,7 +135,7 @@ export default function Home() {
       <div className="img_section"> 
         <header className="img-fluid flex justify-between align-middle py-4 px-8 border-b-1  border-grey-200"  >
           <div className="col text-5xl ml-4 w-100 font-bold py-2 px-5 text-black ">
-            <Image src={LOGO} width={220} height={40}></Image>
+            <Image src={LOGO} alt="loanyee logo" width={220} height={40}></Image>
           </div>
           <div className="col mr-5 flex flex-row gap-3 items-center">
             <Link href="/borrow">
