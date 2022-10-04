@@ -23,7 +23,7 @@ import footersTwo from "../public/image/footersTwo.svg"
 import footersThree from "../public/image/footersThree.svg"
 import footersfour from "../public/image/footersfour.svg"
 import ESPL from "../public/image/ESPL.svg"
-import { theme } from "./theme";
+import { theme } from "../theme/theme";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ethers } from "ethers";
 import { useContext, useEffect, useState } from "react";
