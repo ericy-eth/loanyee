@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }) {
     })} chains={chains}>
         <Head>
           <title>Loanyee</title>
-          <link rel="icon" href="../public/favicon.ico" />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
         <UserProvider>

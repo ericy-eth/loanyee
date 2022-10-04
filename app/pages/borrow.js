@@ -14,13 +14,9 @@ import { UserContext } from "../context/useContext";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { list } from "postcss";
-import ABI from "../data/contractABI/LoanFactory"
-
+import { loanFactoryABI } from "../data/contractABI/LoanFactory";
 import {usePrepareContractWrite, useContractWrite, useAccount, useSigner} from "wagmi"
 
-let loanABI =  ABI
-
-console.log("loan ABI is ", loanABI);
 
 export default function Borrow(){
 
@@ -94,7 +90,7 @@ export default function Borrow(){
     // const borrowAmountInWeiString = ethers.utils.formatEther(borrowAmountInWei);
     const {config} = usePrepareContractWrite({
         addressOrName:  "0xFB26b9144f13e7D2485C4df2cCbb977660DC01fc",
-        contractInterface: loanABI,
+        contractInterface: loanFactoryABI,
         functionName: "createNewLoan",
         args:[borrowAmount+"000000000000000000", 8, loanDuration, employerAddress, userAddress, "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9"],
         onSuccess(data) {

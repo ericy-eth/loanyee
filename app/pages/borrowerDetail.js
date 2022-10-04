@@ -19,12 +19,11 @@ import LoanHistorySection from '../components/loanDetail/loanHistorySection';
 import USDC from '../components/cryptologos/usdc';
 import DAI from '../components/cryptologos/dai';
 
-import loanFactoryABI from "../data/contractABI/LoanFactory"
-import erc20ABI from "../data/contractABI/erc20TokenABI"
 // import employmentLoanABI from "../data/contractABI/EmploymentLoan.json"
 import { writeContract } from '@wagmi/core';
-
-import employmentLoanABI from "../data/contractABI/employmentLoan"
+import { loanFactoryABI } from '../data/contractABI/LoanFactory';
+import { employmentLoanABI } from '../data/contractABI/employmentLoan';
+import { erc20ABI } from '../data/contractABI/erc20TokenABI';
 //Helper Functions
 
  
@@ -78,32 +77,32 @@ export default function BorrowerDetail() {
     addressOrName: "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00",
     contractInterface: erc20ABI,
     functionName: 'approve',
-    args:[loanContractAddress, borrowAmount+"000000000000000000"]
+    args:[loanContractAddress, borrowAmount+25]
   })
   
   const {write:approveERC20, data, isSuccess} = useContractWrite(approveERC20Config)
 
   //Prepare Lend Function
   const { config: lendToBorrowerConfig, error } = usePrepareContractWrite({
-    addressOrName: "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00",
+    addressOrName: employmentLoanAddress,
     contractInterface: employmentLoanABI,
     functionName: 'lend'
   })
 
   console.log("logging error ", error );
 
-  const {write, data:lendData, isSuccess:lendSuccess} = useContractWrite(lendToBorrowerConfig)
+  const {write: createNewLoan, data:lendData, isSuccess:lendSuccess} = useContractWrite(lendToBorrowerConfig)
   console.log("logging errors",lendData, lendSuccess);
 
   //Link for etherscan
   const etherscanBorrowerAddress = "https://etherscan.io/address/" + borrowerData.borrower
-  const etherscanContractAddress = "https://etherscan.io/address/0xfaF70914062B12949a835837219eE526b921B7F4"
+  const etherscanContractAddress = "https://etherscan.io/address/" + employmentLoanAddress
 
   function approve(){
     approveERC20()
   }
   function lend(){
-    write()
+    createNewLoan()
   }
 
  
@@ -118,8 +117,8 @@ export default function BorrowerDetail() {
         {/* Title and Borrower */}
             <div className="flex justify-between">
                 <h1 className="font-semibold text-2xl">Borrower Detail</h1>
-                <button onClick={approve} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white py-2 px-5 rounded-full text-center">Lend to this Borrower</button>
-                {/* <button onClick={lend} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white py-2 px-5 rounded-full text-center">Lend to this Borrower</button> */}
+                <button onClick={approve} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white py-2 px-5 rounded-full text-center">Approve</button>
+                <button onClick={lend} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white py-2 px-5 rounded-full text-center">Lend to this Borrower</button>
 
             </div>
 
@@ -174,7 +173,7 @@ export default function BorrowerDetail() {
                     <div className="flex flex-col col-span-1">
                         <p className="text-sm text-gray-500">Contract Address</p>
                         <div className="flex gap-2 items-center">
-                            <p className="text-xl font-medium">{shortenAddress("0xfaF70914062B12949a835837219eE526b921B7F4")}</p>
+                            <p className="text-xl font-medium">{shortenAddress(`${employmentLoanAddress}`)}</p>
                             <a target="_blank" rel="noreferrer" href={etherscanContractAddress}>
                                 <Redirect width="1.2rem"/>
                             </a>

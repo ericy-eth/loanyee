@@ -14,7 +14,7 @@ import { ethers } from "ethers";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/useContext";
 
-export default function Home() {
+export default function ImprovedLanding() {
   const { user, setUser } = useContext(UserContext)
 
   const [isWalletConnected, setWalletConnected] = useState()
