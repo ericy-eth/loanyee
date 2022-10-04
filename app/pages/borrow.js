@@ -15,7 +15,7 @@ import { UserContext } from "../context/useContext";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { list } from "postcss";
 import { loanFactoryABI } from "../data/contractABI/LoanFactory";
-import {usePrepareContractWrite, useContractWrite, useAccount, useSigner} from "wagmi"
+import {usePrepareContractWrite, useContractWrite, useAccount, useWaitForTransaction} from "wagmi"
 
 
 export default function Borrow(){
@@ -63,7 +63,8 @@ export default function Borrow(){
     //List items
     const listItems = [<SetupLoan key={1} setFunctions={setFunctions} formState={formState} APY={APY} creditScore={3}/>,<EmployerApproval key={2} />, <Completed key={3} formState={formState} APY={APY}/>]
 
-   
+   //Checks to make sure tx completed already
+   const [loanTxCompleted, setLoanTxCompleted] = useState(false)
 
 
     function nextPage(){
@@ -97,14 +98,19 @@ export default function Borrow(){
             console.log('Success', data)
         },
     })
-    const {write:createLoan, isSuccess } = useContractWrite(config)
+    const {write:createLoan, isSuccess, data: loanTxData } = useContractWrite(config)
+
+    const {data, isError, isLoading: loanTxPending, isSuccess: loanTxSuccess} = useWaitForTransaction({hash:loanTxData?.hash})
 
     
-    function submitForm(){
-        console.log("Borrow amount at this stage " + borrowAmount);
+    function submitForm(event){
         createLoan()
-        nextPage()
+    }
 
+    if(loanTxSuccess && !loanTxCompleted){
+        nextPage()
+        setLoanTxCompleted(true)
+        
     }
 
    
@@ -149,7 +155,7 @@ export default function Borrow(){
             <div className="flex justify-around mt-5">
             {currentItem==2 && <button onClick={prevPage} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Back</button>}
 
-            {currentItem==0 && <button onClick={submitForm} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>}
+            {currentItem==0 && <button name="submitBtn" disabled onClick={submitForm} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">{loanTxPending ? <p>Loading</p> : <p>Submit</p>}</button>}
 
             {currentItem==1 &&
                 <button onClick={nextPage} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>
