@@ -4,9 +4,6 @@ import USDC from "../cryptologos/usdc"
 
 import { useState, useEffect, useRef } from "react"
 
-
-
-
 export default function Completed({formState, APY}){
 
     return(

@@ -1,21 +1,19 @@
-
-import Link from "next/link"
-
-import { ethers } from "ethers";
-
-import abi from "../data/contractABI/LoanFactory"
-
 import EmployerApproval from "../components/borrowSignup/employerApproval";
 import SetupLoan from "../components/borrowSignup/setupLoan";
 import Completed from "../components/borrowSignup/completed";
+
 
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/useContext";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { list } from "postcss";
 import { loanFactoryABI } from "../data/contractABI/LoanFactory";
 import {usePrepareContractWrite, useContractWrite, useAccount, useWaitForTransaction} from "wagmi"
+
+import {Rings} from "react-loader-spinner";
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
+
 
 
 export default function Borrow(){
@@ -117,8 +115,9 @@ export default function Borrow(){
     return(
         <>
        
+       
         <div className="mt-5 container mx-auto max-w-2xl ">
-          
+
         <header className=" flex flex-row justify-center items-center text-center align-middle gap-5">
                 <div className="flex flex-row items-center gap-3">
                     <div className="bg-black rounded-full w-10 h-10 flex align-middle items-center justify-center"> 
@@ -154,8 +153,20 @@ export default function Borrow(){
            {/* Render Buttons to go back or forward */}
             <div className="flex justify-around mt-5">
             {currentItem==2 && <button onClick={prevPage} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Back</button>}
-
-            {currentItem==0 && <button name="submitBtn" disabled onClick={submitForm} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">{loanTxPending ? <p>Loading</p> : <p>Submit</p>}</button>}
+            {currentItem==0 && !loanTxPending && <button name="submitBtn" onClick={submitForm} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Submit</button>}
+            {currentItem==0 && loanTxPending && 
+            <button name="submitBtn" disabled className="text-md flex justify-center  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">
+              <Rings
+                height="50"
+                width="50"
+                color="#ffffff"
+                radius="3"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="rings-loading"/>
+            </button>
+            }
 
             {currentItem==1 &&
                 <button onClick={nextPage} className="text-md hover:opacity-80  m-0 bg-stone-900 text-white w-32 py-2 px-5 rounded-full text-center">Continue</button>

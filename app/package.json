@@ -30,6 +30,7 @@
     "react-blockies": "^1.4.1",
     "react-dom": "18.2.0",
     "react-jazzicon": "^1.0.4",
+    "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.4.1",
     "wagmi": "^0.6.7",
     "yarn": "^1.22.19"

@@ -4,8 +4,6 @@ import USDC from "../cryptologos/usdc.js" //USDC svg component
 import ETH from "../cryptologos/eth.js" //ETH svg component
 import DAI from "../cryptologos/dai.js"
 import USDT from "../cryptologos/usdt.js"
-import { ethers } from "ethers"
-
 
 export default function SetupLoan({setFunctions, formState, APY, creditScore}){
 
@@ -48,6 +46,7 @@ export default function SetupLoan({setFunctions, formState, APY, creditScore}){
 
             <h1 className="flex  mt-8 font-bold text-2xl">
             Setup Loan 🔧
+            
             </h1>
             <div className="flex flex-row mt-5 bg-slate-200 rounded-md p-3  gap-1">
             💡
