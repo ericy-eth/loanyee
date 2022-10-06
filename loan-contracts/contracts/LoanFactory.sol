@@ -14,6 +14,11 @@ import "@tableland/evm/contracts/ITablelandTables.sol";
 import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol"; 
 import "@openzeppelin/contracts/utils/Strings.sol";    
 
+
+interface IPUSHCommInterface {
+    function sendNotification(address _channel, address _recipient, bytes calldata _identity) external;
+}
+
 contract EmploymentLoan is SuperAppBase {
     using CFAv1Library for CFAv1Library.InitData;
 
