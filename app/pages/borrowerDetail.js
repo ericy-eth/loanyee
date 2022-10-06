@@ -30,9 +30,7 @@ import { erc20ABI } from '../data/contractABI/erc20TokenABI';
 
 export default function BorrowerDetail() {
 
-  // const { data: signer, isError, isLoading } = useSigner()
-
-// const {data:lenderSigner} = signer()
+  
 
   function shortenAddress(str){
     return str.substring(0, 5) + "..." + str.substring(str.length - 3);
@@ -41,7 +39,8 @@ export default function BorrowerDetail() {
   //Router for passing data between pages
   const router = useRouter();
   const borrowerData = router.query;
-
+  const borrowAmountInEther = (borrowerData.borrowAmount/Math.pow(10, 18)).toFixed(0)
+  const returnAmountInEther = borrowAmountInEther*(1+(borrowerData.interestRate/100)*(borrowerData.paybackMonths/12))
   
   const { user, setUser } = useContext(UserContext);
 
@@ -144,7 +143,7 @@ export default function BorrowerDetail() {
                     <div className="flex col-span-1 flex-col">
                         <p className="text-md text-gray-500">Loan Value</p>
                         <div className="flex gap-2" >
-                        <DAI width={"2rem"}></DAI> <p className="text-2xl font-medium">{borrowerData.borrowAmount/1000000000000000000}</p>
+                        <DAI width={"2rem"}></DAI> <p className="text-2xl font-medium">{borrowAmountInEther}</p>
                         </div>
                     </div>
                     <div className="flex col-span-1 flex-col">
@@ -163,10 +162,7 @@ export default function BorrowerDetail() {
                     <div className="flex flex-col col-span-1">
                         <p className="text-sm text-gray-500">Return Amount</p>
                         <div className="flex gap-2" >
-                        <DAI width={"2rem"}></DAI> <p className="text-xl font-medium">{
-                        borrowerData.borrowAmount/100000000000000000000+
-                        ((((borrowerData.borrowAmount)*
-                        (borrowerData.interestRate*(borrowerData.paybackMonths/12)))/1000000000000000000000).toFixed(2))}</p>
+                        <DAI width={"2rem"}></DAI> <p className="text-xl font-medium">{returnAmountInEther}</p>
                         </div>
                     </div>
              

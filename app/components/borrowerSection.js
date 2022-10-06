@@ -39,7 +39,7 @@ export default function BorrowerSection({index,data}){
                 <ETH width="2rem"></ETH>}
                 <DAI width="2rem"></DAI>
                 
-                {data.borrowAmount/1000000000000000000} DAI
+                {(data.borrowAmount/1000000000000000000).toFixed(0)} DAI
             </div>
             {/* Loan Maturity, Credit Score, Salary History, and APR */}
             <div className="col-span-2">{data.paybackMonths} months</div>
